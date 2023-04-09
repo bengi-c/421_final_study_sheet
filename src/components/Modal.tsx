@@ -214,7 +214,7 @@ export const Modal: React.FC<ModalProps> = ({
     >
       <ModalCard
         className={className}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e: any) => e.stopPropagation()}
         initial={{ translateY: -100 }}
         animate={{ translateY: 0 }}
         exit={{ translateY: 100 }}
