@@ -2,9 +2,9 @@ import {A4Paper} from "../components/Paper";
 import React from "react";
 import {PageHeader} from "../components/PageHeader";
 import {SQL} from "../components/Code";
-import {PageColumns, PageSection} from "../components/Layout";
+import {Callout, PageColumns, PageSection} from "../components/Layout";
 import {BASIC_SQL_EXAMPLE} from "../assets/Code";
-import {Facts, KeyValue, NoKey, YesKey} from "../components/KeyValue";
+import { KeyValue, NoKey, YesKey} from "../components/KeyValue";
 
 export const Page1: React.FC<{}> = () => {
     return (
@@ -48,7 +48,9 @@ export const Page1: React.FC<{}> = () => {
                     <YesKey>
                         One to one bidirectional
                     </YesKey>
-
+                <Callout>
+                    In a nutshell, key constraint (arrow) ⇒ at most one; participation constraint (thick line) ⇒ at least once. The affected entity set is joined to the relationship by the appropriate notation.
+                </Callout>
 
 
                 </PageSection>
