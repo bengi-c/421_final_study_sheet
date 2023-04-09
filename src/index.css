@@ -35,13 +35,19 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
 }
 
 code {
   font-family: "InconsolataGo Nerd Font Mono", "Inconsolata", monospace;
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 button {
@@ -73,5 +79,15 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+.with-background {
+  background-color: #242424;
+}
+
+@media (prefers-color-scheme: light) {
+  .with-background {
+    background-color: #ffffff;
   }
 }

@@ -1,4 +1,4 @@
-export const BASIC_SQL_EXAMPLE =`
+export const BASIC_SQL_EXAMPLE = `
 CREATE TABLE Persons (
 PersonID int,
 LastName varchar(255),

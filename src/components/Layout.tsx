@@ -1,58 +1,56 @@
 import styled from "styled-components";
-import {HEADER_HEIGHT} from "./PageHeader";
+import { HEADER_HEIGHT } from "./PageHeader";
 
 export const PageColumns = styled.div`
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   font-size: 60%;
-grid-gap: 2mm;
-margin-top: ${HEADER_HEIGHT};
+  grid-gap: 2mm;
+  margin-top: ${HEADER_HEIGHT};
 `;
 
-
 export const TwoColumn = styled.div`
-display: grid;
-grid-template-columns: 1fr 1fr;
-grid-gap: 2mm;`;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2mm;
+`;
 
 export const PageSection = styled.section`
-margin-bottom: 2em;
+  margin-bottom: 2em;
 `;
 
 export const LeftRight = styled.div`
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const CompactCard = styled.div`
-padding: 1mm;
-margin: 0;
-background: white;
-  color: #242424;
-box-shadow: 0 0 1mm rgba(0, 0, 0, 0.5);
+  class: with-background;
+  padding: 1mm;
+  margin: 0;
+  box-shadow: 0 0 1mm rgba(0, 0, 0, 0.5);
   line-height: 0.9;
   font-size: 65%;
   font-weight: 500;
   min-height: 10px;
   max-height: 25px;
   height: min-content;
-  
+
   & > code {
     margin: 0;
   }
-  
 `;
 
 export const Callout = styled.aside`
-padding: 1mm;
-margin: 0;
-background: white;
+  padding: 1mm;
+  margin: 0;
+  background: white;
   font-weight: 300;
-box-shadow: 0 0 1mm rgba(0, 0, 0, 0.5);
-    line-height: 0.9;
-    font-size: 65%;
-    min-height: 10px;
-    height: min-content;
+  box-shadow: 0 0 1mm rgba(0, 0, 0, 0.5);
+  line-height: 0.9;
+  font-size: 65%;
+  min-height: 10px;
+  height: min-content;
 `;
 
 export const Footer = styled.footer`
@@ -63,16 +61,16 @@ export const Footer = styled.footer`
   padding: 0 1em;
 
   align-content: center;
-  
+
   display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
+  justify-content: space-between;
+  align-items: center;
+
   // draw lines between items inside
   & > * {
     display: inline-block;
     margin-right: 1em;
-    border-right: 1px solid rgba(130,130,130,0.5);
+    border-right: 1px solid rgba(130, 130, 130, 0.5);
     padding-right: 1em;
     text-align: center;
     width: 100%;

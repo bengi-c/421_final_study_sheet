@@ -39,3 +39,24 @@
 .read-the-docs {
   color: #888;
 }
+
+/*when printing, we want to default all elelements to not showing*/
+@media print {
+  .App > * {
+    display: none;
+    margin: 0;
+  }
+  #root {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 8.5in;
+  }
+  .no-print {
+    display: none !important;
+  }
+
+  .print {
+    display: block;
+  }
+}

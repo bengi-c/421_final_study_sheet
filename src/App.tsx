@@ -1,32 +1,109 @@
-import React, { useState } from 'react'
-import './App.css'
-import {Page1} from "./pages/Page1";
-import {FaChartLine, FaGithub, FaHeart, FaReact, FaYoutube} from "react-icons/fa";
-import {Footer} from "./components/Layout";
-import {SiOcaml} from "react-icons/si";
+import React, { useState } from "react";
+import "./App.css";
+import { Page1 } from "./pages/Page1";
+import {
+  FaChartLine,
+  FaGithub,
+  FaHeart,
+  FaPrint,
+  FaQuestionCircle,
+  FaReact,
+  FaYoutube,
+} from "react-icons/fa";
+import { Footer, LeftRight } from "./components/Layout";
+import { SiOcaml } from "react-icons/si";
+import { Modal } from "./components/Modal";
+import { KeyValue, YesKey } from "./components/KeyValue";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showHelp, setShowHelp] = useState(false);
 
   return (
     <div className="App">
-        <h2>
-            COMP421 Final Exam Cheat Sheet
-        </h2>
-        <p>
-            Built with <FaHeart/> by <a href="https://sasharesume.com">Sasha</a>. Contributions welcome on <a href="https://github.com/TheBigSasha/421_final_study_sheet"><FaGithub/> GitHub </a>.
-        </p>
-        <div style={{height: 25}}></div>
-        <h1>Page 1</h1>
-      <Page1/>
-        <h1>Page 2</h1>
-        <Page1/>
+      {showHelp && (
+        <Modal
+          onClose={() => {
+            setShowHelp(false);
+          }}
+          title={"Printing"}
+        >
+          <p>
+            When printing, please use the following settings to avoid errors.
+          </p>
+          <KeyValue value={"Letter (8.5in x 11in)"}>Page Size</KeyValue>
+          <KeyValue key={"Margins"} value={"None (0px)"}>
+            Margins
+          </KeyValue>
+          <KeyValue key={"Orientation"} value={"Portrait"}>
+            Orientation
+          </KeyValue>
+          <KeyValue key={"Scaling"} value={"None (100%)"}>
+            Scaling
+          </KeyValue>
+          <YesKey key={"Headers and Footers"}>Headers & Footers</YesKey>
+          <YesKey key={"Background Graphics"}>Background Graphics</YesKey>
+          <p>
+            This site is only tested in <i>Google Chrome</i>. Other browsers may
+            work, but you are likely to experience problems.{" "}
+            <strong>
+              When printing correctly, the header IE "Page 1..." should be at
+              the top of each page, and fill its width entirely.
+            </strong>
+          </p>
+        </Modal>
+      )}
+      <LeftRight className={"no-print"}>
+        <h2>COMP421 Final Exam Cheat Sheet</h2>
+        <span>
+          <FaQuestionCircle
+            onClick={() => {
+              setShowHelp(!showHelp);
+            }}
+            title={"Help & Info about printing"}
+            style={{ cursor: "pointer", marginRight: 10 }}
+          ></FaQuestionCircle>
+          <button
+            onClick={() => {
+              // print as Letter, no margin, portrait
+              window.print();
+            }}
+          >
+            <FaPrint></FaPrint> Print
+          </button>
+        </span>
+      </LeftRight>
 
-        <Footer>
-            <a href="https://thebigsasha.github.io/COMP302StudySheet/"><SiOcaml/> COMP302 Exam</a> <a href={"https://github.com/TheBigSasha/RuntimeTester"}><FaChartLine/> Runtime Tester</a> <a href={"https://www.youtube.com/@CS250"}> <FaYoutube> </FaYoutube> COMP 250</a> <a href={"https://www.npmjs.com/package/tbsui"}><FaReact/> React Components</a>
-        </Footer>
+      <p>
+        Built with <FaHeart /> by <a href="https://sasharesume.com">Sasha</a>.
+        Contributions welcome on{" "}
+        <a href="https://github.com/TheBigSasha/421_final_study_sheet">
+          <FaGithub /> GitHub{" "}
+        </a>
+        .
+      </p>
+      <div style={{ height: 25 }}></div>
+      <h1>Page 1</h1>
+      <Page1 />
+      <h1>Page 2</h1>
+      <Page1 />
+
+      <Footer className={"no-print"}>
+        <a href="https://thebigsasha.github.io/COMP302StudySheet/">
+          <SiOcaml /> COMP302 Exam
+        </a>{" "}
+        <a href={"https://github.com/TheBigSasha/RuntimeTester"}>
+          <FaChartLine /> Runtime Tester
+        </a>{" "}
+        <a href={"https://www.youtube.com/@CS250"}>
+          {" "}
+          <FaYoutube> </FaYoutube> COMP 250
+        </a>{" "}
+        <a href={"https://www.npmjs.com/package/tbsui"}>
+          <FaReact /> React Components
+        </a>
+      </Footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
