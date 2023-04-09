@@ -5,6 +5,8 @@ import { SQL } from "../components/Code";
 import { Callout, PageColumns, PageSection } from "../components/Layout";
 import { BASIC_SQL_EXAMPLE } from "../assets/Code";
 import { KeyValue, NoKey, YesKey } from "../components/KeyValue";
+import Latex from "react-latex-next";
+import 'katex/dist/katex.min.css'
 
 export const Page1: React.FC<{}> = () => {
   return (
@@ -47,6 +49,7 @@ export const Page1: React.FC<{}> = () => {
             constraint (thick line) ⇒ at least once. The affected entity set is
             joined to the relationship by the appropriate notation.
           </Callout>
+          <YesKey><Latex>{`\$\\frac{1}{2}\$ look it's \$\\LaTeX\$`}</Latex></YesKey>
         </PageSection>
         <PageSection>
           <h2>SQL</h2>
