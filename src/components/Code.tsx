@@ -1,9 +1,6 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
 import React from "react";
-import {
-  atomOneLight,
-  idea,
-} from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { atomOneLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 interface RawCodeProps {
   code: string;
@@ -11,10 +8,18 @@ interface RawCodeProps {
 
 type CodeProps = React.PropsWithChildren<RawCodeProps>;
 
-export const SQL: React.FC<CodeProps> = ({ code }) => {
+interface SyntaxHighlightProps {
+  language: string;
+  code: string;
+}
+
+export const SyntaxHighlight: React.FC<SyntaxHighlightProps> = ({
+  language,
+  code,
+}) => {
   return (
     <SyntaxHighlighter
-      language="sql"
+      language={language}
       style={atomOneLight}
       customStyle={{
         textAlign: "left",
@@ -24,3 +29,11 @@ export const SQL: React.FC<CodeProps> = ({ code }) => {
     </SyntaxHighlighter>
   );
 };
+
+export const SQL: React.FC<CodeProps> = ({ code }) => (
+  <SyntaxHighlight language="sql" code={code} />
+);
+
+export const Java: React.FC<CodeProps> = ({ code }) => (
+  <SyntaxHighlight language="java" code={code} />
+);

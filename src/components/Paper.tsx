@@ -15,3 +15,13 @@ export const A4Paper = styled.div`
   position: relative;
   color: black;
 `;
+
+export const Image = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+`;

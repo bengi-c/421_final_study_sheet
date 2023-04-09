@@ -13,7 +13,7 @@ import {
 import { Footer, LeftRight } from "./components/Layout";
 import { SiOcaml } from "react-icons/si";
 import { Modal } from "./components/Modal";
-import {KeyValue, NoKey, YesKey} from "./components/KeyValue";
+import { KeyValue, NoKey, YesKey } from "./components/KeyValue";
 
 function App() {
   const [showHelp, setShowHelp] = useState(false);
@@ -86,6 +86,21 @@ function App() {
       <Page1 />
       <h1>Page 2 (placeholder)</h1>
       <Page1 />
+
+      <div style={{ height: 25 }}></div>
+      <p style={{ maxWidth: "8.5in" }}>
+        {" "}
+        Including infromation from{" "}
+        <a
+          href={
+            "https://sarvasvarora.notion.site/0ded2d57df4d49dcb06e2fc4a834df56?v=0fb12fd38b684150991d4f565bb19a4a"
+          }
+        >
+          notes by Sarvasv Arora
+        </a>
+        , content from McGill University's COMP421, and contributions made on
+        GitHub.
+      </p>
 
       <Footer className={"no-print"}>
         <a href="https://thebigsasha.github.io/COMP302StudySheet/">

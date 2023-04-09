@@ -91,3 +91,13 @@ button:focus-visible {
     background-color: #ffffff;
   }
 }
+
+caption {
+    font-size: 1.2em;
+    font-weight: 200;
+    padding: 0.5em 0;
+    width: 2.83in;
+    margin-bottom: 0.5em;
+  text-align: center;
+
+}
