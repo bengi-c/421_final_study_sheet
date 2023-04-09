@@ -13,7 +13,7 @@ import {
 import { Footer, LeftRight } from "./components/Layout";
 import { SiOcaml } from "react-icons/si";
 import { Modal } from "./components/Modal";
-import { KeyValue, YesKey } from "./components/KeyValue";
+import {KeyValue, NoKey, YesKey} from "./components/KeyValue";
 
 function App() {
   const [showHelp, setShowHelp] = useState(false);
@@ -40,7 +40,7 @@ function App() {
           <KeyValue key={"Scaling"} value={"None (100%)"}>
             Scaling
           </KeyValue>
-          <YesKey key={"Headers and Footers"}>Headers & Footers</YesKey>
+          <NoKey key={"Headers and Footers"}>Headers & Footers</NoKey>
           <YesKey key={"Background Graphics"}>Background Graphics</YesKey>
           <p>
             This site is only tested in <i>Google Chrome</i>. Other browsers may

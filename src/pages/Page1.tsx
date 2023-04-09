@@ -2,16 +2,17 @@ import { A4Paper } from "../components/Paper";
 import React from "react";
 import { PageHeader } from "../components/PageHeader";
 import { SQL } from "../components/Code";
-import { Callout, PageColumns, PageSection } from "../components/Layout";
+import {Callout, LeftRight, PageColumns, PageSection} from "../components/Layout";
 import { BASIC_SQL_EXAMPLE } from "../assets/Code";
 import { KeyValue, NoKey, YesKey } from "../components/KeyValue";
 import Latex from "react-latex-next";
 import 'katex/dist/katex.min.css'
+import {FaGithub} from "react-icons/fa";
 
 export const Page1: React.FC<{}> = () => {
   return (
     <A4Paper>
-      <PageHeader>Page 1 - DBMS</PageHeader>
+      <PageHeader><span>Page 1 - DBMS</span><span><FaGithub/>/TheBigSasha</span></PageHeader>
       <PageColumns>
         <PageSection>
           <h3>Entities & Relationships</h3>
