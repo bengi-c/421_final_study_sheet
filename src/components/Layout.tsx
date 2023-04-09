@@ -54,3 +54,34 @@ box-shadow: 0 0 1mm rgba(0, 0, 0, 0.5);
     min-height: 10px;
     height: min-content;
 `;
+
+export const Footer = styled.footer`
+  position: static;
+  margin-top: 2em;
+
+  height: ${HEADER_HEIGHT};
+  padding: 0 1em;
+
+  align-content: center;
+  
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+  // draw lines between items inside
+  & > * {
+    display: inline-block;
+    margin-right: 1em;
+    border-right: 1px solid rgba(130,130,130,0.5);
+    padding-right: 1em;
+    text-align: center;
+    width: 100%;
+    font-size: 90%;
+    color: unset;
+
+    &:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+  }
+`;
