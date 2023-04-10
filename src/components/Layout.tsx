@@ -27,21 +27,29 @@ export const LeftRight = styled.div`
 export const CompactCard = styled.div`
   class: with-background;
   padding: 1mm;
-  margin: 0;
-  box-shadow: 0 0 1mm rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0.5mm rgba(0, 0, 0, 0.2);
   line-height: 0.9;
   font-size: 65%;
   font-weight: 500;
   min-height: 10px;
-  max-height: 25px;
   height: min-content;
+  margin: 0 0 0.55mm;
+
 
   & > code {
     margin: 0;
   }
 `;
 
-export const Callout = styled.aside`
+export const TrueCard = styled(CompactCard)`
+  box-shadow: 0 0 0.5mm rgba(0, 130, 0, 0.8);
+  `;
+
+export const FalseCard = styled(CompactCard)`
+    box-shadow: 0 0 0.5mm rgba(130, 0, 0, 0.8);
+    `;
+
+  export const Callout = styled.aside`
   padding: 1mm;
   margin: 0;
   background: white;
