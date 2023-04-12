@@ -14,8 +14,8 @@ import { Footer, LeftRight } from "./components/Layout";
 import { SiOcaml } from "react-icons/si";
 import { Modal } from "./components/Modal";
 import { KeyValue, NoKey, YesKey } from "./components/KeyValue";
-import {Page2} from "./pages/Page2";
-import {TestPage} from "./pages/TestPage";
+import { Page2 } from "./pages/Page2";
+import { TestPage } from "./pages/TestPage";
 
 function App() {
   const [showHelp, setShowHelp] = useState(false);
@@ -87,9 +87,9 @@ function App() {
       <h1>Page 1</h1>
       <Page1 />
       <h1>Page 2</h1>
-      <Page2/>
-        <h1>Test Page</h1>
-        <TestPage/>
+      <Page2 />
+      <h1>Test Page</h1>
+      <TestPage />
 
       <div style={{ height: 25 }}></div>
       <p style={{ maxWidth: "8.5in" }}>
