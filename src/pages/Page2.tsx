@@ -14,7 +14,7 @@ import Latex from "react-latex-next";
 import "katex/dist/katex.min.css";
 import { FaGithub } from "react-icons/fa";
 import { LatexSymbol } from "../components/Latex";
-import { Info } from "../components/QuickSymbols";
+import {HowToH3, Info, InfoH3} from "../components/QuickSymbols";
 
 export const Page2: React.FC<{}> = () => {
   return (
@@ -28,10 +28,8 @@ export const Page2: React.FC<{}> = () => {
       </PageHeader>
       <PageColumns>
         <PageSection>
-          <h3>
-            {" "}
-            <Info /> Meta-terms
-          </h3>
+          <InfoH3>Meta-terms
+          </InfoH3>
           <KeyValue value={"Relation"}>
             <Latex>{`R,S,T,\$\\cdots\$`}</Latex>
             <p>Table</p>
@@ -44,9 +42,8 @@ export const Page2: React.FC<{}> = () => {
             <Latex>{`a,b,c,\$\\cdots\$`}</Latex>
             <p>Column</p>
           </KeyValue>
-          <h3>
-            <Info /> Operators (one relation input)
-          </h3>
+          <InfoH3>Operators (one relation input)
+          </InfoH3>
           <KeyValue value={"Selection"}>
             <LatexSymbol symbol={`sigma_{A=B}(R)`}></LatexSymbol>
             <p>Keep only rows where A = B (filter rows)</p>
@@ -61,9 +58,9 @@ export const Page2: React.FC<{}> = () => {
           </KeyValue>
           <YesKey>Rename Tables</YesKey>
           <YesKey>Rename Columns</YesKey>
-          <h3>
-            <Info /> Operators (two relations input)
-          </h3>
+          <InfoH3>
+            Operators (two relations input)
+          </InfoH3>
           <KeyValue value={"Cross Product"}>
             <Latex>{`R \$\\times\$ S`}</Latex>
           </KeyValue>
@@ -93,9 +90,8 @@ export const Page2: React.FC<{}> = () => {
             An equi-join on all common attributes (i.e., attributes with the
             same name in both relations)
           </KeyValue>
-          <h3>
-            <Info /> Set operators (two relations input)
-          </h3>
+          <InfoH3>Set operators (two relations input)
+          </InfoH3>
           <KeyValue value={"Union"}>
             <Latex>{`R \$\\cup\$ S`}</Latex>
             <p>All tupes in R and/or S</p>
@@ -108,9 +104,9 @@ export const Page2: React.FC<{}> = () => {
             <Latex>{`R \$\\setminus\$ S`}</Latex>
             <p>Keep only tuples in R but not S</p>
           </KeyValue>
-          <h3>
-            <Info /> Rules of Combinations of Operators
-          </h3>
+          <InfoH3>
+            Rules of Combinations of Operators
+          </InfoH3>
           <KeyValue value={"Associativity"}>
             <Latex>{`\$R_1 \\bowtie (R_2 \\bowtie R_3) = (R_1 \\bowtie R_2) \\bowtie R_3\$`}</Latex>
           </KeyValue>

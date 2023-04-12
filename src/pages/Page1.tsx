@@ -13,7 +13,7 @@ import { FaGithub } from "react-icons/fa";
 
 import ImgER1 from "../assets/images/er-1.png";
 import { LatexSymbol } from "../components/Latex";
-import { Example, HowTo, Info } from "../components/QuickSymbols";
+import {Example, ExampleH3, HowTo, HowToH3, Info, InfoH3} from "../components/QuickSymbols";
 
 import ImageERRM1 from "../assets/images/er_to_rm_1.png";
 import ImageERRM2 from "../assets/images/er_to_rm_2.png";
@@ -39,10 +39,9 @@ export const Page1: React.FC<{}> = () => {
       </PageHeader>
       <PageColumns>
         <PageSection>
-          <h3>
-            <Info />
+          <InfoH3>
             Entities & Relationships
-          </h3>
+          </InfoH3>
           <YesKey>Entity == Class == Table</YesKey>
           <YesKey>Relationship == Association == Foreign Key</YesKey>
           <p>Constraints</p>
@@ -52,9 +51,9 @@ export const Page1: React.FC<{}> = () => {
           <KeyValue value={"Covering"}>
             Must an entity belong to a subclass?
           </KeyValue>
-          <h3>
-            <Info /> Relationships
-          </h3>
+          <InfoH3>
+            Relationships
+          </InfoH3>
           <KeyValue value={"ISA / is a"}>
             Subclass == Child Class == Child Table
           </KeyValue>
@@ -80,10 +79,9 @@ export const Page1: React.FC<{}> = () => {
             joined to the relationship by the appropriate notation.
           </Callout>
           <Image src={ImgER1} alt={"ER Diagram"} />
-          <h3>
-            <Info />
+          <InfoH3>
             Symbol Glossary
-          </h3>
+          </InfoH3>
           <KeyValue value={"Entity"}>Rectangle</KeyValue>
           <KeyValue value={"Relationship"}>Diamond</KeyValue>
           <KeyValue value={"ISA"}>Triangle</KeyValue>
@@ -99,9 +97,9 @@ export const Page1: React.FC<{}> = () => {
             A schema can be considered an entity set, while an instance is
             comparable to an entity.
           </Callout>
-          <h3>
-            <Info /> Schemas & Relation
-          </h3>
+          <InfoH3>
+            Schemas & Relation
+          </InfoH3>
           - **Schema**: specifies the name of the relation, plus a set of
           attributes along with their domain/data type. - Example:
           `Students(sid: int, name: string, login:string, faculty: string,
@@ -121,9 +119,9 @@ export const Page1: React.FC<{}> = () => {
             physical/file format the data is stored in. The querying syntax
             remains the same. It’s like an abstraction.
           </Callout>
-          <h3>
-            <Info /> Constraints
-          </h3>
+          <InfoH3>
+             Constraints
+          </InfoH3>
           <h4>Integrity Constraints (IC)</h4>
           <KeyValue value={"NOT NULL"}>
             A column cannot contain NULL values.
@@ -139,9 +137,9 @@ export const Page1: React.FC<{}> = () => {
           </KeyValue>
         </PageSection>
         <PageSection>
-          <h3>
-            <HowTo /> ER Diagram {"->"} Relational Schema{" "}
-          </h3>
+          <HowToH3>
+             ER Diagram {"->"} Relational Schema{" "}
+          </HowToH3>
           <OrderedList>
             <li>
               Entity set → relation: Convert each entity set into a table and
@@ -195,9 +193,9 @@ export const Page1: React.FC<{}> = () => {
               the superclass as a foreign key and any additional attributes.
             </li>
           </OrderedList>
-          <h3>
-            <Info /> Additional ER Tips N Tricks
-          </h3>
+          <InfoH3>
+             Additional ER Tips N Tricks
+          </InfoH3>
           <Callout>
             💡 Note that in ER models, subclasses don’t have a key attribute of
             their own since that would be redundant. However, in relational
@@ -214,18 +212,18 @@ export const Page1: React.FC<{}> = () => {
             relationships that can occur selectively only with certain
             subclasses.
           </Callout>
-          <h3>
-            <Example /> Converting ER to Relational
-          </h3>
+          <ExampleH3>
+            Converting ER to Relational
+          </ExampleH3>
           <Image src={ImageERRM1} alt={"ER Diagram"} />
           <Image src={ImageERRM2} alt={"ER Diagram"} />
           <Image src={ImageERRM3} alt={"ER Diagram"} />
         </PageSection>
 
         <PageSection>
-          <h3>
-            <Info /> SQL Types
-          </h3>
+          <InfoH3>
+            SQL Types
+          </InfoH3>
           <KeyValue value={"CHAR(n)"}>
             Fixed-length string of length n. Example: `CHAR(5)` can store a
             string of length 5.
@@ -253,9 +251,9 @@ export const Page1: React.FC<{}> = () => {
             Bit string or a BLOB, i.e., a binary large object. Raw bits.
           </KeyValue>
           <YesKey>User Defined Custom Types (uncommon)</YesKey>
-          <h3>
-            <Example /> Basic SQL
-          </h3>
+          <ExampleH3>
+            Basic SQL
+          </ExampleH3>
           <h4>Create Table</h4>
           <SQL code={SQL_CREATE_EXAMPLE} />
           <h4>Insert tuple into table</h4>

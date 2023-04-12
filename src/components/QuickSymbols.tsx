@@ -1,6 +1,8 @@
 // Quick symbols are visually disntinct icons showing different content types at a glance.
 
 import { FaCalculator, FaInfoCircle, FaQuestionCircle } from "react-icons/fa";
+import React from "react";
+import styled from "styled-components";
 
 const getColor = (i: number) => {
   // get a random but visually distinct color
@@ -35,3 +37,37 @@ export const Info = () => {
 export const Example = () => {
   return <FaCalculator color={getColor(2)}></FaCalculator>;
 };
+
+// take color from props
+const GradientHeader = styled("h3")<{ inputColor?: string }>`
+  background: linear-gradient(90deg,
+  rgba(255, 255, 255, 0) 0%,
+  ${props => props.inputColor || "rgba(255,0,0,1)"} 250%);
+
+`;
+
+
+
+export const InfoH3 = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <GradientHeader inputColor={getColor(1)}>
+        <Info /> {children}
+        </GradientHeader>
+    );
+}
+
+export const HowToH3 = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <GradientHeader inputColor={getColor(0)}>
+        <HowTo /> {children}
+        </GradientHeader>
+    );
+}
+
+export const ExampleH3 = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <GradientHeader inputColor={getColor(2)}>
+        <Example /> {children}
+        </GradientHeader>
+    );
+}
