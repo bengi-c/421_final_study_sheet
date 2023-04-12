@@ -2,7 +2,6 @@ import { A4Paper, Image } from "../components/Paper";
 import React from "react";
 import { PageHeader } from "../components/PageHeader";
 import {
-  Callout,
   OrderedList,
   PageColumns,
   PageSection,
@@ -26,6 +25,7 @@ import {
   SQL_SELECT_EXAMPLE,
   SQL_UPDATE_EXAMPLE,
 } from "../assets/Code";
+import { InfoBox } from "../components/ThemedBoxes";
 
 export const Page1: React.FC<{}> = () => {
   return (
@@ -73,11 +73,11 @@ export const Page1: React.FC<{}> = () => {
             Example: a person has one passport.
           </KeyValue>
           <YesKey>One to one bidirectional</YesKey>
-          <Callout>
+          <InfoBox>
             In a nutshell, key constraint (arrow) ⇒ at most one; participation
             constraint (thick line) ⇒ at least once. The affected entity set is
             joined to the relationship by the appropriate notation.
-          </Callout>
+          </InfoBox>
           <Image src={ImgER1} alt={"ER Diagram"} />
           <InfoH3>
             Symbol Glossary
@@ -90,13 +90,13 @@ export const Page1: React.FC<{}> = () => {
           <KeyValue value={"Weak"}>Dashed Line</KeyValue>
           <KeyValue value={"Derived"}>Dotted Line</KeyValue>
           <KeyValue value={"Identifying"}>Double Line</KeyValue>
-          <Callout>
+          <InfoBox>
             relation = table; instances = rows; columns = attributes
-          </Callout>
-          <Callout>
+          </InfoBox>
+          <InfoBox>
             A schema can be considered an entity set, while an instance is
             comparable to an entity.
-          </Callout>
+          </InfoBox>
           <InfoH3>
             Schemas & Relation
           </InfoH3>
@@ -114,11 +114,11 @@ export const Page1: React.FC<{}> = () => {
           >
             Data Manipulation Language (DML)
           </KeyValue>
-          <Callout>
+          <InfoBox>
             Being a data-centric language means that it is independent of the
             physical/file format the data is stored in. The querying syntax
             remains the same. It’s like an abstraction.
-          </Callout>
+          </InfoBox>
           <InfoH3>
              Constraints
           </InfoH3>
@@ -196,28 +196,31 @@ export const Page1: React.FC<{}> = () => {
           <InfoH3>
              Additional ER Tips N Tricks
           </InfoH3>
-          <Callout>
-            💡 Note that in ER models, subclasses don’t have a key attribute of
+          <InfoBox>
+            Note that in ER models, subclasses don’t have a key attribute of
             their own since that would be redundant. However, in relational
             models, sub-tables have primary key attributes, which represent a
             reference to the parent table. This is NOT redundant but rather the
             encoding of ISA symbol.
-          </Callout>
-          <Callout>
-            💡 Another approach to translating ISA hierarchies would be to have
+          </InfoBox>
+          <InfoBox>
+            Another approach to translating ISA hierarchies would be to have
             one big relation with all the possible attributes in various
             subclasses. It would make querying simpler, however, the
             disadvantage is that it would have a lot of `NULL` values that waste
             storage space. Moreover, it would no longer be possible to have
             relationships that can occur selectively only with certain
             subclasses.
-          </Callout>
+          </InfoBox>
           <ExampleH3>
             Converting ER to Relational
           </ExampleH3>
           <Image src={ImageERRM1} alt={"ER Diagram"} />
           <Image src={ImageERRM2} alt={"ER Diagram"} />
           <Image src={ImageERRM3} alt={"ER Diagram"} />
+          <InfoBox>
+            There is an option to cascade delete the rows in all foreign tables, in case the row is deleted from the parent table. For example, if a row is deleted from Students,  it would also be deleted from Enrolled.
+          </InfoBox>
         </PageSection>
 
         <PageSection>
