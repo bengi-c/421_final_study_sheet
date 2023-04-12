@@ -17,7 +17,7 @@ export const KeyValue: React.FC<React.PropsWithChildren<KeyValueProps>> = ({
   return (
     <CardComponent>
       <LeftRight>
-        <span>{children}</span>
+        <span style={{fontSize: "85%"}}>{children}</span>
         <code>{value}</code>
       </LeftRight>
     </CardComponent>

@@ -29,11 +29,10 @@ export const CompactCard = styled.div`
   padding: 1mm;
   box-shadow: 0 0 0.5mm rgba(0, 0, 0, 0.2);
   line-height: 0.9;
-  font-size: 65%;
   font-weight: 500;
   min-height: 10px;
   height: min-content;
-  margin: 0 0 0.55mm;
+  margin: 0.5mm 0 0.55mm;
 
 
   & > code {
@@ -51,14 +50,13 @@ export const FalseCard = styled(CompactCard)`
 
   export const Callout = styled.aside`
   padding: 1mm;
-  margin: 0;
   background: white;
   font-weight: 300;
-  box-shadow: 0 0 1mm rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0.5mm rgba(0, 0, 0, 0.2);
   line-height: 0.9;
-  font-size: 65%;
   min-height: 10px;
   height: min-content;
+    margin-bottom: 0.5mm;
 `;
 
 export const Footer = styled.footer`
@@ -89,5 +87,42 @@ export const Footer = styled.footer`
       border-right: none;
       padding-right: 0;
     }
+  }
+`;
+
+
+export const OrderedList = styled.ol`
+  list-style: decimal;
+  padding: 0 0 0 1em;
+  margin: 1em 0;
+  font-size: 90%;
+  line-height: 1.2;
+  font-weight: 300;
+
+  & > li {
+    border-bottom: 1px solid rgba(130, 130, 130, 0.5);
+    margin-bottom: 0.5em;
+
+    & :last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+    
+    & > :first-child {
+        margin-top: 0;
+    }
+  }
+  
+    & > li > p {
+        margin: 0;
+    }
+  
+    & > li > p > code {
+        margin: 0;
+    }
+  
+  & :last-child {
+    margin-bottom: 0;
+    border-bottom: none;
   }
 `;

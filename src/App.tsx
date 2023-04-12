@@ -86,7 +86,7 @@ function App() {
       <div style={{ height: 25 }}></div>
       <h1>Page 1</h1>
       <Page1 />
-      <h1>Page 2 (placeholder)</h1>
+      <h1>Page 2</h1>
       <Page2/>
         <h1>Test Page</h1>
         <TestPage/>

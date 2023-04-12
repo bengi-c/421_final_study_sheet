@@ -5,7 +5,7 @@ export const A4Paper = styled.div`
   height: 11in;
   padding: 4mm;
   background: white;
-  font-size: 80%;
+  font-size: 12.8px;
   box-shadow: 0 0 5mm rgba(0, 0, 0, 0.5);
   @media print {
     box-shadow: none;
