@@ -29,6 +29,7 @@ import {
   SQL_UPDATE_EXAMPLE,
 } from "../assets/Code";
 import { InfoBox } from "../components/ThemedBoxes";
+import IMG_JBDC_CONN from "../assets/images/jbdc_conn.png";
 
 //TODO: Candidate key, better glossary of ER diagram symbols
 export const Page1: React.FC<{}> = () => {
@@ -230,6 +231,12 @@ export const Page1: React.FC<{}> = () => {
               tables, in case the row is deleted from the parent table. For
               example, if a row is deleted from Students, it would also be
               deleted from Enrolled.
+            </p>
+          </InfoBox>
+          <Image src={IMG_JBDC_CONN}/>
+          <InfoBox>
+            <p>
+              <h4>SQL in PLs - Two vs 3 Tier</h4> Two-tier model has direct communication between application and database, offering flexibility but potential security issues and upgrade problems. Three-tier model separates client, middleware, and backend, improving security and organization. Web servers handle network protocols, application servers implement business logic, and connection pooling optimizes database connections.
             </p>
           </InfoBox>
         </PageSection>
