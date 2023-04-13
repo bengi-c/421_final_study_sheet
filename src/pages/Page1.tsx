@@ -330,7 +330,6 @@ export const Page1: React.FC<{}> = () => {
           <InfoBox>
             <p>All the different joins fall under the JOIN keyword.</p>
           </InfoBox>
-          {/*  TODO: Operators and all below in sarvasvs notes*/}
         </PageSection>
       </PageColumns>
     </A4Paper>
