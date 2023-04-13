@@ -20,7 +20,8 @@ import IMG_RA_MC_EXAMPLE from "../assets/images/ra-mc-example.png";
 import IMG_RA_SA_TABLES from "../assets/images/ra-sa-tables.png";
 import IMG_HEAPFILE from "../assets/images/heapfile.png";
 import IMG_SORTEDFILE from "../assets/images/sortedfile.png";
-
+import IMG_HEAP_FILE_COST from "../assets/images/heap_file_cost.png";
+import IMG_SORTED_FILE_COST from "../assets/images/sorted_file_cost.png";
 
 export const Page3: React.FC<{}> = () => {
     return (
@@ -149,6 +150,7 @@ export const Page3: React.FC<{}> = () => {
                         <div>
                             <h4>Heap file (unordered)</h4>
                             <Image src={IMG_HEAPFILE}/>
+                            <caption>The header page’s pageid and the heap filename must be stored somewhere. Each page contains 2 pointers plus additional data.</caption>
                             <p>
                             simplest file structure, containing records in no particular order. As the file grows and shrinks, disk pages are allocated and de-allocated.
 
@@ -159,11 +161,43 @@ export const Page3: React.FC<{}> = () => {
                         <div>
                             <h4>Sorted file (ordered)</h4>
                             <Image src={IMG_SORTEDFILE}/>
+                            <caption>Each page contains 2 pointers plus additional data.</caption>
                             <p>
                                 contains records sorted by one of the attributes. Since data lookup and searching is simpler when data is sorted, this kind of structure is preferred in most practical implementations. Sorted data allows us to achieve the same goal in lesser number of read/write operations ⇒ lesser the amount of disk I/O, the better the performance.
                             </p>
                         </div>
                     </TwoColumn>
+                    <hr/>
+                    <h2>Cost Model</h2>
+                    <InfoH3>Types of Cost</InfoH3>
+                    <KeyValue value={"I/O cost"}>
+                        The cost of reading a page from disk is the same as reading a page from memory. The cost of writing a page to disk is the same as writing a page to memory.
+                    </KeyValue>
+                    <KeyValue value={"CPU cost"}>
+                        The cost of performing a single operation is the same as performing a single operation.
+                    </KeyValue>
+                    <KeyValue value={"Network overhead"}>
+                        Not a focus of this course, applies to distributed DBMS.
+                    </KeyValue>
+                    <InfoBox>
+                        <p>  <h4>Regarding CPU vs I/O Costs</h4>                      Note that CPU costs only come into the picture when the data is actually present in memory. This makes overcoming the I/O overhead a bigger problem to focus on. However, real systems also consider the CPU cost to estimate the execution time of a statement.
+                        </p>
+                    </InfoBox>
+                    <WarningBox>
+                        <p>
+                            <h4>Assumptions in COMP421</h4> Consider only disk reads, ignoring writes, for a read-only workload. However, be aware that a small number of writes may occur due to main memory resource constraints, including page swapping. An example is when a user requests a sorted relation, which requires loading parts of the relation into memory, sorting it, writing it back to the disk, and repeating until the data is sorted before returning the result. This analysis focuses on the number of I/Os and not individual read times, ignoring page pre-fetch, and is based on an average-case analysis with several simplistic assumptions.
+                        </p>
+                    </WarningBox>
+                    <WarningBox>
+                        <p>Update is delete and insert.</p>
+                    </WarningBox>
+                    <ExampleH3>Cost Estimates in sorted and unsorted files</ExampleH3>
+                    <Image src={IMG_SORTED_FILE_COST}/>
+                    <Image src={IMG_HEAP_FILE_COST}/>
+                </PageSection>
+                <PageSection>
+                    <h2>Indexing</h2>
+
                 </PageSection>
             </PageColumns>
         </A4Paper>
