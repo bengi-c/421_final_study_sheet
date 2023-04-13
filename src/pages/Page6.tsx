@@ -289,11 +289,14 @@ export const Page6: React.FC<{}> = () => {
             </li>
           </ul>
           <InfoBox>
-            <p> Note that in order to maintain the data in the form of key-value
-            pairs (which is essential for map-reduce framework), we have to put
-            some dummy value in places where we don’t require any value. In the
-            above example, we use <code>0</code> as a dummy value since we don’t
-            really require any value corresponding to the key.</p>
+            <p>
+              {" "}
+              Note that in order to maintain the data in the form of key-value
+              pairs (which is essential for map-reduce framework), we have to
+              put some dummy value in places where we don’t require any value.
+              In the above example, we use <code>0</code> as a dummy value since
+              we don’t really require any value corresponding to the key.
+            </p>
           </InfoBox>
 
           <h4 id="-join-">
@@ -323,13 +326,14 @@ export const Page6: React.FC<{}> = () => {
                         output <code>(c, (Q, (d, e)))</code>.
                       </p>
                       <InfoBox>
-                          <p>
-                          Note that the <code>R</code> and <code>Q</code> in
-                        the output are just indicator values (could be just a{" "}
-                        <code>CHAR</code> value or something small like that) to
-                        indicate which relation the tuple belongs to. This
-                        distinction would be used later in the map-reduce
-                        algorithm to perform the join operation.</p>
+                        <p>
+                          Note that the <code>R</code> and <code>Q</code> in the
+                          output are just indicator values (could be just a{" "}
+                          <code>CHAR</code> value or something small like that)
+                          to indicate which relation the tuple belongs to. This
+                          distinction would be used later in the map-reduce
+                          algorithm to perform the join operation.
+                        </p>
                       </InfoBox>
                     </li>
                   </ul>
@@ -434,95 +438,225 @@ export const Page6: React.FC<{}> = () => {
               programming it accordingly.
             </p>
           </InfoBox>
-            <InfoH3 >Pig Latin commands</InfoH3>
-            <ul>
-                <li><strong>Load</strong>: read information from a file into an intermediate relation.<ul>
-                    <li>Usually user-defined to translate file format into a relational format.</li>
-                    <li><code>R = load &#39;users&#39; as (name, age);</code></li>
-                </ul>
+          <InfoH3>Pig Latin commands</InfoH3>
+          <ul>
+            <li>
+              <strong>Load</strong>: read information from a file into an
+              intermediate relation.
+              <ul>
+                <li>
+                  Usually user-defined to translate file format into a
+                  relational format.
                 </li>
-                <li><strong>Store</strong>: write a relation into a file.<ul>
-                    <li>As before, the translation from relational format to the file format is usually defined by the user.</li>
-                    <li><code>store R into &#39;filename&#39;;</code></li>
-                </ul>
+                <li>
+                  <code>R = load &#39;users&#39; as (name, age);</code>
                 </li>
-                <li><strong>Dump</strong>: display a relation to the screen.<ul>
-                    <li><code>dump R;</code></li>
-                </ul>
+              </ul>
+            </li>
+            <li>
+              <strong>Store</strong>: write a relation into a file.
+              <ul>
+                <li>
+                  As before, the translation from relational format to the file
+                  format is usually defined by the user.
                 </li>
-            </ul>
-            <InfoBox>
-                <p> Note that the Pig Latin statements don’t start executing until the interpreter encounters a <code>store</code> or <code>dump</code> command.</p>
+                <li>
+                  <code>store R into &#39;filename&#39;;</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Dump</strong>: display a relation to the screen.
+              <ul>
+                <li>
+                  <code>dump R;</code>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <InfoBox>
+            <p>
+              {" "}
+              Note that the Pig Latin statements don’t start executing until the
+              interpreter encounters a <code>store</code> or <code>dump</code>{" "}
+              command.
+            </p>
+          </InfoBox>
 
-            </InfoBox>
+          <ul>
+            <li>
+              <strong>Limit</strong>: limits the number of records in the
+              output.
+              <ul>
+                <li>
+                  <code>res = limit R &lt;num_records&gt;;</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Describe</strong>: describes the schema of a relation. It
+              is quite handy to observe the structure of intermediate relations
+              while working with them.
+              <ul>
+                <li>
+                  <code>describe R;</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Filter</strong>: performs the selection operation on a
+              relation.
+              <ul>
+                <li>
+                  <code>Res = filter R by &lt;conditions&gt;;</code>
+                </li>
+                <li>
+                  <code>&lt;conditions&gt;</code> can include any conditions on
+                  the attributes of the relation <code>R</code>, such as{" "}
+                  <code>age &gt;= 18</code>, etc.
+                </li>
+                <li>
+                  Multiple conditions can be combined using logical operators
+                  like <code>and</code> and <code>or</code>.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Join</strong>: performs a join operation on two relations
+              by joining them by the specified attributes.
+              <ul>
+                <li>
+                  <code>Res = join R1 by attr1, R2 by attr2;</code>
+                </li>
+                <li>
+                  The above command translates to SQL as:{" "}
+                  <code>SELECT * FROM R1, R2 WHERE R1.attr1 = R2.attr2;</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Order by</strong>: orders a relation on the specified
+              attribute.
+              <ul>
+                <li>
+                  <code>Res = order R by attr desc;</code>
+                </li>
+                <li>
+                  Orders in ascending order by default (can use <code>asc</code>{" "}
+                  explicitly), but can specify <code>desc</code> at the end to
+                  order in descending order.
+                </li>
+                <li>
+                  The above command translates to SQL as:{" "}
+                  <code>SELECT * FROM R ORDER BY attr DESC;</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                <strong>Group by</strong>: aggregates records of a relation
+                having equal value for the specified attribute.
+              </p>
+              <ul>
+                <li>
+                  <code>Res = group R by A;</code>
+                </li>
+                <li>
+                  Given a relation <code>R(A, B, C)</code> with three tuples{" "}
+                  <code>(a1, b1, c1)</code>, <code>(a1, b2, c2)</code>,{" "}
+                  <code>(a3, b3, c3)</code>.
+                </li>
+                <li>
+                  The <code>Res</code> relation has tuples{" "}
+                  <code>{`(a1, {(b1, c1), (b2, c2)})`}</code>,{" "}
+                  <code>(a3, (b3, c3))</code>.
+                </li>
+                <li>
+                  <p>
+                    The resulting relation <code>Res</code> is always of the
+                    form <code>Res(group, R)</code> where <code>R</code> is the
+                    name of the original relation. It is possible to access the
+                    attributes of the resulting relation using those names.
+                  </p>
+                  <InfoBox>
+                    It is similar to the group and sort operation in map-reduce.
+                  </InfoBox>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                <strong>For each</strong>: performs the projection operation on
+                the resulting relation obtained from the group by command. Can
+                also apply aggregate operations such as <code>COUNT()</code>,{" "}
+                <code>MAX()</code>, etc.
+              </p>
+              <ul>
+                <li>
+                  <code>
+                    Res = foreach groupByRes generate ($0), COUNT($1) as count;
+                  </code>
+                </li>
+                <li>
+                  Since the attributes of the resulting relation from a group by
+                  command have special name, the above command can also be
+                  written as:{" "}
+                  <code>
+                    Res = foreach groupByRes generate group, COUNT(groupByRes)
+                    as count;
+                  </code>
+                </li>
+                <li>
+                  The resulting relation after the foreach command would be of
+                  the form <code>Res(group, count)</code>.
+                </li>
+                <li>
+                  <p>
+                    The <code>foreach</code> command can also be used to apply
+                    projection to a relation. Assume a relation{" "}
+                    <code>R(A, B, C)</code>. We can project on attributes{" "}
+                    <code>A</code> and <code>C</code> using{" "}
+                    <code>Res = foreach R generate A, C;</code> or{" "}
+                    <code>Res = foreach R generate ($0), ($2);</code>
+                  </p>
+                  <InfoBox>
+                    <p>
+                      💡 Note that an attribute from a tuple can be selected as{" "}
+                      <code>($0)</code>, <code>($1)</code>, etc.
+                    </p>
+                  </InfoBox>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                <strong>Co-group</strong>: works similarly to group by command,
+                but is used in statements involving two or more relations.
+              </p>
+              <ul>
+                <li>
+                  <code>Res = cogroup R1 by attr, R2 by attr, ...;</code>
+                </li>
+                <li>
+                  Results in a nested result (whereas group by produces a flat
+                  result).
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Flattening</strong>: the nested result from the co-group
+              (or any other command) can be difficult to comprehend. It is
+              possible to unwind the result to produce a flattened result using
+              the flatten function.
+              <ul>
+                <li>
+                  <code>Res = foreach R generate ($0), flatten($1);</code>
+                </li>
+              </ul>
+            </li>
+          </ul>
 
-            <ul>
-                <li><strong>Limit</strong>: limits the number of records in the output.<ul>
-                    <li><code>res = limit R &lt;num_records&gt;;</code></li>
-                </ul>
-                </li>
-                <li><strong>Describe</strong>: describes the schema of a relation. It is quite handy to observe the structure of intermediate relations while working with them.<ul>
-                    <li><code>describe R;</code></li>
-                </ul>
-                </li>
-                <li><strong>Filter</strong>: performs the selection operation on a relation.<ul>
-                    <li><code>Res = filter R by &lt;conditions&gt;;</code></li>
-                    <li><code>&lt;conditions&gt;</code> can include any conditions on the attributes of the relation <code>R</code>, such as <code>age &gt;= 18</code>, etc.</li>
-                    <li>Multiple conditions can be combined using logical operators like <code>and</code> and <code>or</code>.</li>
-                </ul>
-                </li>
-                <li><strong>Join</strong>: performs a join operation on two relations by joining them by the specified attributes.<ul>
-                    <li><code>Res = join R1 by attr1, R2 by attr2;</code></li>
-                    <li>The above command translates to SQL as: <code>SELECT * FROM R1, R2 WHERE R1.attr1 = R2.attr2;</code></li>
-                </ul>
-                </li>
-                <li><strong>Order by</strong>: orders a relation on the specified attribute.<ul>
-                    <li><code>Res = order R by attr desc;</code></li>
-                    <li>Orders in ascending order by default (can use <code>asc</code> explicitly), but can specify <code>desc</code> at the end to order in descending order.</li>
-                    <li>The above command translates to SQL as: <code>SELECT * FROM R ORDER BY attr DESC;</code></li>
-                </ul>
-                </li>
-                <li><p><strong>Group by</strong>: aggregates records of a relation having equal value for the specified attribute.</p>
-                    <ul>
-                        <li><code>Res = group R by A;</code></li>
-                        <li>Given a relation <code>R(A, B, C)</code> with three tuples <code>(a1, b1, c1)</code>, <code>(a1, b2, c2)</code>, <code>(a3, b3, c3)</code>.</li>
-                        <li>The <code>Res</code> relation has tuples <code>{`(a1, {(b1, c1), (b2, c2)})`}</code>, <code>(a3, (b3, c3))</code>.</li>
-                        <li><p>The resulting relation <code>Res</code> is always of the form <code>Res(group, R)</code> where <code>R</code> is the name of the original relation. It is possible to access the attributes of the resulting relation using those names.</p>
-                            <InfoBox>
-                                It is similar to the group and sort operation in map-reduce.
-
-                            </InfoBox>
-                        </li>
-                    </ul>
-                </li>
-                <li><p><strong>For each</strong>:  performs the projection operation on the resulting relation obtained from the group by command. Can also apply aggregate operations such as <code>COUNT()</code>, <code>MAX()</code>, etc.</p>
-                    <ul>
-                        <li><code>Res = foreach groupByRes generate ($0), COUNT($1) as count;</code></li>
-                        <li>Since the attributes of the resulting relation from a group by command have special name, the above command can also be written as: <code>Res = foreach groupByRes generate group, COUNT(groupByRes) as count;</code></li>
-                        <li>The resulting relation after the foreach command would be of the form <code>Res(group, count)</code>.</li>
-                        <li><p>The <code>foreach</code> command can also be used to apply projection to a relation. Assume a relation <code>R(A, B, C)</code>. We can project on attributes <code>A</code> and <code>C</code> using <code>Res = foreach R generate A, C;</code> or <code>Res = foreach R generate ($0), ($2);</code></p>
-                            <InfoBox>
-                                <p>
-                                💡 Note that an attribute from a tuple can be selected as <code>($0)</code>, <code>($1)</code>, etc.</p>
-
-                            </InfoBox>
-                        </li>
-                    </ul>
-                </li>
-                <li><p><strong>Co-group</strong>: works similarly to group by command, but is used in statements involving two or more relations.</p>
-                    <ul>
-                        <li><code>Res = cogroup R1 by attr, R2 by attr, ...;</code></li>
-                        <li>Results in a nested result (whereas group by produces a flat result).</li>
-                    </ul>
-                </li>
-                <li><strong>Flattening</strong>: the nested result from the co-group (or any other command) can be difficult to comprehend. It is possible to unwind the result to produce a flattened result using the flatten function.<ul>
-                    <li><code>Res = foreach R generate ($0), flatten($1);</code></li>
-                </ul>
-                </li>
-            </ul>
-
-            <strong>Pig Latin will continue on the next page</strong>
-
+          <strong>Pig Latin will continue on the next page</strong>
         </PageSection>
       </PageColumns>
     </A4Paper>

@@ -69,8 +69,7 @@ const MyExampleBlock = <h3> <Example/> Example of SQL Insert </h3>;
 export const SQL_CREATE_INDEX = `CREATE INDEX idxSID ON students(sid); -- create index on sid
 DROP INDEX idxSID; -- drop index on sid`;
 
-export const PIG_LATIN_Q1 =
-    `An input is a Person P, and P’s List of Friends For each friend F in the List of Friends
+export const PIG_LATIN_Q1 = `An input is a Person P, and P’s List of Friends For each friend F in the List of Friends
 // Our output pairs will be alphabetical ordered.
 // ie (X,Y) would always be such that X < Y
 // It is ok if F is not removed here.
@@ -83,7 +82,7 @@ The reducer below would get inputs of the following format (including whatever i
 Input is a pair of friends (P1,P2) and corresponding lists of friends ((List of friends 1),(List of friends 2))
 // Take intersection of the friend lists.
 Output (P1,P2), (common individuals in the list of friends 1 and 2) In our case, the output of the above reducer would look something like this. (Ali,Joe), (Jane,Zack)
-For any pair of friends (X,Y), we will store only information for (X,Y), such that X < Y, thus avoiding duplicates. When the application has to lookup (Y,X), it can internally check whether X < Y and instead lookup (X,Y).`
+For any pair of friends (X,Y), we will store only information for (X,Y), such that X < Y, thus avoiding duplicates. When the application has to lookup (Y,X), it can internally check whether X < Y and instead lookup (X,Y).`;
 
 export const PIG_LATIN_Q6 = `--load the data from HDFS and define the schema
 movies = LOAD '/data/movies.csv' USING PigStorage(',') AS (movieid:INT, title:CHARARRAY, year:INT);
@@ -104,4 +103,12 @@ DUMP badyears;
 -- Order the output by year.
 --orderdbadyears = ORDER badyears BY curryear;
 -- Send the output to the screen.
-DUMP orderdbadyears;`
+DUMP orderdbadyears;`;
+
+
+export const CYPHER_Q1 = `MATCH (keanu:Person {name:'Keanu Reeves'})
+RETURN keanu.name, keanu.born`;
+
+export const CYPHER_Q2 = `MATCH (bornInEighties:Person)
+WHERE bornInEighties.born >= 1980 AND bornInEighties.born < 1990
+RETURN bornInEighties.name as name, bornInEighties.born as born ORDER BY born DESC`

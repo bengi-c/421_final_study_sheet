@@ -78,9 +78,9 @@ export const Page1: React.FC<{}> = () => {
             <p>
               <h4>Symbols Summary</h4>
               In a nutshell, key constraint (arrow) ⇒ at most one; participation
-              constraint (thick line) ⇒ at least once. The affected entity set is
-              joined to the relationship by the appropriate notation.</p>
-
+              constraint (thick line) ⇒ at least once. The affected entity set
+              is joined to the relationship by the appropriate notation.
+            </p>
           </InfoBox>
           <Image src={ImgER1} alt={"ER Diagram"} />
           <InfoH3>Symbol Glossary</InfoH3>
@@ -116,9 +116,10 @@ export const Page1: React.FC<{}> = () => {
           <InfoBox>
             <p>
               <h4>On Abstraction</h4>
-            Being a data-centric language means that it is independent of the
-            physical/file format the data is stored in. The querying syntax
-            remains the same. It’s like an abstraction.</p>
+              Being a data-centric language means that it is independent of the
+              physical/file format the data is stored in. The querying syntax
+              remains the same. It’s like an abstraction.
+            </p>
           </InfoBox>
           <InfoH3>Constraints</InfoH3>
           <h4>Integrity Constraints (IC)</h4>
@@ -134,9 +135,7 @@ export const Page1: React.FC<{}> = () => {
           <KeyValue value={"FOREIGN KEY"}>
             Must correspond to the primary key of the relation it refers to.
           </KeyValue>
-          <YesKey>
-            A foreign key can be a primary key
-          </YesKey>
+          <YesKey>A foreign key can be a primary key</YesKey>
         </PageSection>
         <PageSection>
           <HowToH3>ER Diagram {"->"} Relational Schema </HowToH3>
@@ -197,23 +196,27 @@ export const Page1: React.FC<{}> = () => {
           <InfoBox>
             <p>
               <h4>Keys & Inheritance in ER Models ISA</h4>
-            Note that in ER models, subclasses don’t have a key attribute of
-            their own since that would be redundant. However, in relational
-            models, sub-tables have primary key attributes, which represent a
-            reference to the parent table. This is NOT redundant but rather the
-            encoding of ISA symbol.
+              Note that in ER models, subclasses don’t have a key attribute of
+              their own since that would be redundant. However, in relational
+              models, sub-tables have primary key attributes, which represent a
+              reference to the parent table. This is NOT redundant but rather
+              the encoding of ISA symbol.
             </p>
           </InfoBox>
           <InfoBox>
             <p>
-                <h4>Weak Entity Sets</h4>
-              <strong>Definition: Weak entry set has no primary key and is defined only in terms of other entities</strong>
-              Another approach to translating ISA hierarchies would be to have one
-              big relation with all the possible attributes in various subclasses.
-              It would make querying simpler, however, the disadvantage is that it
-              would have a lot of `NULL` values that waste storage space.
-              Moreover, it would no longer be possible to have relationships that
-              can occur selectively only with certain subclasses
+              <h4>Weak Entity Sets</h4>
+              <strong>
+                Definition: Weak entry set has no primary key and is defined
+                only in terms of other entities
+              </strong>
+              Another approach to translating ISA hierarchies would be to have
+              one big relation with all the possible attributes in various
+              subclasses. It would make querying simpler, however, the
+              disadvantage is that it would have a lot of `NULL` values that
+              waste storage space. Moreover, it would no longer be possible to
+              have relationships that can occur selectively only with certain
+              subclasses
             </p>
           </InfoBox>
           <ExampleH3>Converting ER to Relational</ExampleH3>
@@ -223,10 +226,10 @@ export const Page1: React.FC<{}> = () => {
           <InfoBox>
             <p>
               <h4>Cascade</h4>
-            There is an option to cascade delete the rows in all foreign tables,
-            in case the row is deleted from the parent table. For example, if a
-            row is deleted from Students, it would also be deleted from
-            Enrolled.
+              There is an option to cascade delete the rows in all foreign
+              tables, in case the row is deleted from the parent table. For
+              example, if a row is deleted from Students, it would also be
+              deleted from Enrolled.
             </p>
           </InfoBox>
         </PageSection>

@@ -56,5 +56,9 @@ export const TypeScript: React.FC<CodeProps> = ({ code }) => (
 );
 
 export const PigLatin: React.FC<CodeProps> = ({ code }) => (
-    <SyntaxHighlight language="piglatin" code={code} />
+  <SyntaxHighlight language="piglatin" code={code} />
+);
+
+export const Cypher: React.FC<CodeProps> = ({ code }) => (
+    <SyntaxHighlight language="cypher" code={code} />
 );

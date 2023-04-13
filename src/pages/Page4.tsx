@@ -267,13 +267,13 @@ export const Page4: React.FC<{}> = () => {
           </OrderedList>
           <InfoBox>
             <p>
-            <h4>Extra Tips - Cost Calculation</h4>
-            For specific queries, you will need to analyze the conditions in the
-            query and the available indices. Compute the I/O cost for different
-            scenarios, such as using a single index, multiple indices, or no
-            index, and compare the results to determine the most efficient
-            strategy. Consider factors such as clustered vs. unclustered index
-            and the type of join being used.
+              <h4>Extra Tips - Cost Calculation</h4>
+              For specific queries, you will need to analyze the conditions in
+              the query and the available indices. Compute the I/O cost for
+              different scenarios, such as using a single index, multiple
+              indices, or no index, and compare the results to determine the
+              most efficient strategy. Consider factors such as clustered vs.
+              unclustered index and the type of join being used.
             </p>
           </InfoBox>
           <ExampleH3>Data Page RID, index related Calculations</ExampleH3>
@@ -302,7 +302,6 @@ export const Page4: React.FC<{}> = () => {
             If people indicate 250 there must be some explanation together with
             the number.
           </p>
-
         </PageSection>
         <PageSection>
           <InfoH3>Static Hash Indexes</InfoH3>
@@ -400,7 +399,6 @@ export const Page4: React.FC<{}> = () => {
               </li>
             </ul>
           </KeyValue>
-
           {/*    TODO: Finish query evaluation topic */}
         </PageSection>
       </PageColumns>

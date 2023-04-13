@@ -46,8 +46,8 @@ export const Page2: React.FC<{}> = () => {
           <YesKey>A relation is assumed to be a set (no duplicates)</YesKey>
           <InfoBox>
             <p>
-              <h4>Mathematical QLs</h4> Mathematical QLs form the basis for relational
-              QLs. They are implemented using
+              <h4>Mathematical QLs</h4> Mathematical QLs form the basis for
+              relational QLs. They are implemented using
               <strong>Relational algebra</strong>: it’s a simple abstraction
               where a query is a sequence of operations on data. It is very
               useful for representing execution plans, for example, to describe
