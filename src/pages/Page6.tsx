@@ -288,13 +288,13 @@ export const Page6: React.FC<{}> = () => {
               </ul>
             </li>
           </ul>
-          <aside>
-            💡 Note that in order to maintain the data in the form of key-value
+          <InfoBox>
+            <p> Note that in order to maintain the data in the form of key-value
             pairs (which is essential for map-reduce framework), we have to put
             some dummy value in places where we don’t require any value. In the
             above example, we use <code>0</code> as a dummy value since we don’t
-            really require any value corresponding to the key.
-          </aside>
+            really require any value corresponding to the key.</p>
+          </InfoBox>
 
           <h4 id="-join-">
             <strong>Join</strong>
@@ -322,14 +322,15 @@ export const Page6: React.FC<{}> = () => {
                         For each tuple <code>(c, d, e)</code> of <code>Q</code>,
                         output <code>(c, (Q, (d, e)))</code>.
                       </p>
-                      <aside>
-                        💡 Note that the <code>R</code> and <code>Q</code> in
+                      <InfoBox>
+                          <p>
+                          Note that the <code>R</code> and <code>Q</code> in
                         the output are just indicator values (could be just a{" "}
                         <code>CHAR</code> value or something small like that) to
                         indicate which relation the tuple belongs to. This
                         distinction would be used later in the map-reduce
-                        algorithm to perform the join operation.
-                      </aside>
+                        algorithm to perform the join operation.</p>
+                      </InfoBox>
                     </li>
                   </ul>
                 </li>
@@ -450,10 +451,10 @@ export const Page6: React.FC<{}> = () => {
                 </ul>
                 </li>
             </ul>
-            <aside>
-                💡 Note that the Pig Latin statements don’t start executing until the interpreter encounters a <code>store</code> or <code>dump</code> command.
+            <InfoBox>
+                <p> Note that the Pig Latin statements don’t start executing until the interpreter encounters a <code>store</code> or <code>dump</code> command.</p>
 
-            </aside>
+            </InfoBox>
 
             <ul>
                 <li><strong>Limit</strong>: limits the number of records in the output.<ul>
@@ -487,10 +488,10 @@ export const Page6: React.FC<{}> = () => {
                         <li>Given a relation <code>R(A, B, C)</code> with three tuples <code>(a1, b1, c1)</code>, <code>(a1, b2, c2)</code>, <code>(a3, b3, c3)</code>.</li>
                         <li>The <code>Res</code> relation has tuples <code>{`(a1, {(b1, c1), (b2, c2)})`}</code>, <code>(a3, (b3, c3))</code>.</li>
                         <li><p>The resulting relation <code>Res</code> is always of the form <code>Res(group, R)</code> where <code>R</code> is the name of the original relation. It is possible to access the attributes of the resulting relation using those names.</p>
-                            <aside>
-                                💡 It is similar to the group and sort operation in map-reduce.
+                            <InfoBox>
+                                It is similar to the group and sort operation in map-reduce.
 
-                            </aside>
+                            </InfoBox>
                         </li>
                     </ul>
                 </li>
@@ -500,10 +501,11 @@ export const Page6: React.FC<{}> = () => {
                         <li>Since the attributes of the resulting relation from a group by command have special name, the above command can also be written as: <code>Res = foreach groupByRes generate group, COUNT(groupByRes) as count;</code></li>
                         <li>The resulting relation after the foreach command would be of the form <code>Res(group, count)</code>.</li>
                         <li><p>The <code>foreach</code> command can also be used to apply projection to a relation. Assume a relation <code>R(A, B, C)</code>. We can project on attributes <code>A</code> and <code>C</code> using <code>Res = foreach R generate A, C;</code> or <code>Res = foreach R generate ($0), ($2);</code></p>
-                            <aside>
-                                💡 Note that an attribute from a tuple can be selected as <code>($0)</code>, <code>($1)</code>, etc.
+                            <InfoBox>
+                                <p>
+                                💡 Note that an attribute from a tuple can be selected as <code>($0)</code>, <code>($1)</code>, etc.</p>
 
-                            </aside>
+                            </InfoBox>
                         </li>
                     </ul>
                 </li>
