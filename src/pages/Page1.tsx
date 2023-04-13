@@ -43,7 +43,8 @@ export const Page1: React.FC<{}> = () => {
       <PageColumns>
         <PageSection>
           <InfoH3>Entities & Relationships</InfoH3>
-          <YesKey>Entity == Class == Table</YesKey>
+          <YesKey>Entity Set == Class == Table</YesKey>
+          <YesKey>Entity == Instance == Table Row</YesKey>
           <YesKey>Relationship == Association == Foreign Key</YesKey>
           <p>Constraints</p>
           <KeyValue value={"Overlap"}>
