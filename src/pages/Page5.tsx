@@ -147,8 +147,7 @@ export const Page5: React.FC<{}> = () => {
               <tr>
                 <td>Block Nested Loop Join</td>
                 <td>
-                  Cost = #OuterPages + ⌈#OuterPages / #pagesPerBlock⌉ ×
-                  #InnerPages
+                  Cost = #OuterPages + (#OuterPages/#BufferPages) * #InnerPages
                 </td>
                 <td>500 + 500 / 50 × 1,000</td>
                 <td>Utilizes buffer space for in-memory joins</td>
@@ -165,10 +164,9 @@ export const Page5: React.FC<{}> = () => {
               <tr>
                 <td>Sort-Merge Join</td>
                 <td>
-                  Cost = (4 × #OuterPages + 4 × #InnerPages) + (#OuterPages +
-                  #InnerPages)
+                  Cost =  sorting #OuterPages (see external sorting) * sorting #InnerPages + #OuterPages + #InnerPages
                 </td>
-                <td>5 × 500 + 5 × 1,000</td>
+                <td>(we sort both (mulitply)) and then add sum of number of pages. Cost of sorting is 2 * N_tuples * number of passes</td>
                 <td>
                   Sorts both tables based on join attribute and uses merge
                   operation
@@ -182,6 +180,12 @@ export const Page5: React.FC<{}> = () => {
               </tr>
             </tbody>
           </Table>
+          <WarningBox>
+            <p>
+              <h4>Cost of Sort Merge Join varies based on pipelining,etc.</h4>
+              Normally it's 2 * N_tuples * number of passes. TODO: more here!
+            </p>
+          </WarningBox>
           <InfoH3>Projection</InfoH3>
           Projection is usually done on-the-fly with other operations i.e.,
           pipelining. In case the query requires `DISTINCT` results, it requires

@@ -85,14 +85,26 @@ export const Page1: React.FC<{}> = () => {
           </InfoBox>
           <Image src={ImgER1} alt={"ER Diagram"} />
           <InfoH3>Symbol Glossary</InfoH3>
-          <KeyValue value={"Entity"}>Rectangle</KeyValue>
-          <KeyValue value={"Relationship"}>Diamond</KeyValue>
-          <KeyValue value={"ISA"}>Triangle</KeyValue>
-          <KeyValue value={"Participation"}>Thick Line</KeyValue>
-          <KeyValue value={"Key"}>Arrow</KeyValue>
-          <KeyValue value={"Weak"}>Dashed Line</KeyValue>
-          <KeyValue value={"Derived"}>Dotted Line</KeyValue>
-          <KeyValue value={"Identifying"}>Double Line</KeyValue>
+          <KeyValue value={"Rectangle ▭"}>Entity</KeyValue>
+          <KeyValue value={"Diamond ♢"}>Relationship</KeyValue>
+          <KeyValue value={"Triangle △"}>ISA</KeyValue>
+          <KeyValue value={"Dashed Line"}>Key of weak entity (defined only as an aspect of anothe entity)</KeyValue>
+
+          <KeyValue value={"Thin Line"}>
+            Relationship is a key constraint. @ManyToMany
+            </KeyValue>
+            <KeyValue value={"Thick Line"}>
+                Relationship is a participation constraint. @ManyToMany @NotNull
+            </KeyValue>
+
+          <KeyValue value={"Thin Arrow"}>
+              Only ONE of the arrowed entities in the relation per related entity. @OneToMany or @ManyToOne
+          </KeyValue>
+          <KeyValue value={"Thicc Arrow"}>
+            Total participation constraint.   @OneToOne @NotNull
+          </KeyValue>
+
+
           <InfoBox>
             relation = table; instances = rows; columns = attributes
           </InfoBox>
