@@ -150,15 +150,16 @@ export const Page2: React.FC<{}> = () => {
               matter and can differ).
             </p>
           </WarningBox>
-          <KeyValue value={"Union"}>
+           <YesKey>Unlike other operators, these produce a resulting table with unique rows. </YesKey>
+          <KeyValue value={"UNION"}>
             <Latex>{`R \$\\cup\$ S`}</Latex>
             <p>All tupes in R and/or S</p>
           </KeyValue>
-          <KeyValue value={"Intersection"}>
+          <KeyValue value={"INTERSECT"}>
             <Latex>{`R \$\\cap\$ S`}</Latex>
             <p>Keep only tuples in both R and S</p>
           </KeyValue>
-          <KeyValue value={"Difference"}>
+          <KeyValue value={"EXCEPT"}>
             <Latex>{`R \$\\setminus\$ S`}</Latex>
             <p>Keep only tuples in R but not S</p>
           </KeyValue>
