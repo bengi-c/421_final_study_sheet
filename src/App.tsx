@@ -13,7 +13,7 @@ import {
 import { Footer, LeftRight } from "./components/Layout";
 import { SiOcaml } from "react-icons/si";
 import { Modal } from "./components/Modal";
-import { KeyValue, NoKey, YesKey } from "./components/KeyValue";
+import {Falsehood, KeyValue, NoKey, Sach, YesKey} from "./components/KeyValue";
 import { Page2 } from "./pages/Page2";
 import { TestPage } from "./pages/TestPage";
 import { Page3 } from "./pages/Page3";
@@ -22,6 +22,8 @@ import { Page5 } from "./pages/Page5";
 import { Page6 } from "./pages/Page6";
 import { Page7 } from "./pages/Page7";
 import { Page8 } from "./pages/Page8";
+import {Example, HowTo, HowToH3, Info, InfoH3} from "./components/QuickSymbols";
+import {InfoBox, WarningBox} from "./components/ThemedBoxes";
 
 function App() {
   const [showHelp, setShowHelp] = useState(false);
@@ -33,8 +35,10 @@ function App() {
           onClose={() => {
             setShowHelp(false);
           }}
-          title={"Printing"}
+          title={"Help"}
         >
+            <div style={{lineHeight: 1.3}}>
+            <InfoH3>Printing</InfoH3>
           <p>
             When printing, please use the following settings to avoid errors.
           </p>
@@ -50,6 +54,7 @@ function App() {
           </KeyValue>
           <NoKey key={"Headers and Footers"}>Headers & Footers</NoKey>
           <YesKey key={"Background Graphics"}>Background Graphics</YesKey>
+            <WarningBox>
           <p>
             This site is only tested in <i>Google Chrome</i>. Other browsers may
             work, but you are likely to experience problems.{" "}
@@ -58,6 +63,39 @@ function App() {
               the top of each page, and fill its width entirely.
             </strong>
           </p>
+            </WarningBox>
+            <hr/>
+            <HowToH3>Using the Crib Sheet</HowToH3>
+            <ol>
+                <li>Find your topic on the header (IE Relational Algebra)</li>
+                <li>Look through headers to find the specific topic you need: <ul>
+                    <li><Info/> Info headers (blue) contain consise facts (for MC, true false)</li>
+                    <li><HowTo/> How To headers (green) contain steps to solve a problem (long answer)</li>
+                    <li><Example></Example> Example headers (purple) contain detailed examples. Questions are in <i>italics</i>, with answers in regular text.
+                    </li>
+                </ul></li>
+                <WarningBox>
+                    Be mindful of info an warning boxes. These tell you additional details which can make or break your answer.
+                </WarningBox>
+                <li>Make maximum use of information formatting: <ul>
+                    <li>
+                        Code is syntax highlighted, so you can tell where comments and keywords are.
+                    </li>
+                    <li>
+                        Key value boxes have the keyword on the right corner (see the Letter 8.5x11 above). Glance the right to find the term you need.
+                    </li>
+                    <li>
+                        True false boxes are color coded. If the box has a <Sach/>, the statement inside is true. If it has a <Falsehood/>, the statement is false.
+                    </li>
+
+                </ul></li>
+            </ol>
+
+            <InfoBox style={{background: "rgba(130,130,130,0.3)"}}>
+                <p><h4>On Info Boxes</h4>
+                    Info boxes look like this. They are either 1-2 lines or have a header describing what they're about. They provide more details on specific topics which may or may not come up on an exam. If they do come up, look for an info box near the topic you're looking for. <i>Key details are italicized</i>
+                </p>
+            </InfoBox></div>
         </Modal>
       )}
       <LeftRight className={"no-print"}>
