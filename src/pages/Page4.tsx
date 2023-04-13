@@ -266,12 +266,15 @@ export const Page4: React.FC<{}> = () => {
             </li>
           </OrderedList>
           <InfoBox>
+            <p>
+            <h4>Extra Tips - Cost Calculation</h4>
             For specific queries, you will need to analyze the conditions in the
             query and the available indices. Compute the I/O cost for different
             scenarios, such as using a single index, multiple indices, or no
             index, and compare the results to determine the most efficient
             strategy. Consider factors such as clustered vs. unclustered index
             and the type of join being used.
+            </p>
           </InfoBox>
           <ExampleH3>Data Page RID, index related Calculations</ExampleH3>
           <i>
@@ -299,6 +302,9 @@ export const Page4: React.FC<{}> = () => {
             If people indicate 250 there must be some explanation together with
             the number.
           </p>
+
+        </PageSection>
+        <PageSection>
           <InfoH3>Static Hash Indexes</InfoH3>
           <Image src={IMG_STATIC_HASH} />
           <strong>Static hashing</strong> is similar to standard hashing, but{" "}
@@ -318,8 +324,6 @@ export const Page4: React.FC<{}> = () => {
             <li>Long overflow chains possible</li>
             <li>Optimizations: extensible, linear hashing</li>
           </ul>
-        </PageSection>
-        <PageSection>
           <InfoH3>Hashed Files</InfoH3>
           <ul>
             <li>

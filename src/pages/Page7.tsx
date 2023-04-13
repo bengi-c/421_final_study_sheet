@@ -7,11 +7,11 @@ import {
   PageSection,
   TwoColumn,
 } from "../components/Layout";
-import { KeyValue, YesKey } from "../components/KeyValue";
+import {KeyValue, NoKey, YesKey} from "../components/KeyValue";
 import Latex from "react-latex-next";
 import "katex/dist/katex.min.css";
 import { FaGithub } from "react-icons/fa";
-import {Example, ExampleH3, HowToH3, Info, InfoH3} from "../components/QuickSymbols";
+import {Example, ExampleH3, HowTo, HowToH3, Info, InfoH3} from "../components/QuickSymbols";
 import { InfoBox, MetaBox, WarningBox } from "../components/ThemedBoxes";
 import IMG_CLUST_OR_NOT from "../assets/images/clust_or_not.png";
 import IMG_MULTI_ATTR_IDXING from "../assets/images/multi_attr_idxing.png";
@@ -20,7 +20,12 @@ import IMG_SEARCH_BP_TREE_2 from "../assets/images/search_bp_tree_2.png";
 import IMG_STATIC_HASH from "../assets/images/static_hash.png";
 import {PigLatin} from "../components/Code";
 import {PIG_LATIN_Q1, PIG_LATIN_Q6} from "../assets/Code";
-
+import IMG_SERIAL_VS_NOT from "../assets/images/serial_vs_not.png";
+import IMG_DIRTY_READ from "../assets/images/dirty_read.png";
+import IMG_DIRTY_WRITE from "../assets/images/dirty_write.png";
+import IMG_CONFLICT_EQUIVALENT from "../assets/images/conflict_equivalent.png";
+import IMG_SERIAL_GRAPH_EXMPL from "../assets/images/serial_graph_exmpl.png";
+import IMG_GUIDE_SERIAL_EQUIV from "../assets/images/guide_serial_equiv.png";
 export const Page7: React.FC<{}> = () => {
   return (
     <A4Paper>
@@ -64,6 +69,187 @@ export const Page7: React.FC<{}> = () => {
         </PageSection>
           <PageSection>
                 <InfoH3><strong>Concurrency</strong></InfoH3>
+                <KeyValue value={"Transaction"}>
+                    A set of steps. A transaction can look like <code>read {"->"} update {"->"} write</code>
+                </KeyValue>
+              <KeyValue value={"ACID"}>
+                  Principles of safe concurrent execution, Atomicity, Consistency, Isolation, Durability
+              </KeyValue>
+              <KeyValue value={"Atomicity"}>
+                  A transaction is considered atomic if it is executed in its entirety or not at all (rollback on failure)
+                </KeyValue>
+              <KeyValue value={"Commit"}>
+                  In the scope of atomicity, commit is when the transaction is done and the changes are made permanent.
+                </KeyValue>
+                <KeyValue value={"Abort / Rollback"}>
+                    If a transaction fails before it is committed, it is aborted and the changes are rolled back.
+                </KeyValue>
+                <KeyValue value={"Local Recovery"}>
+                    Takes a <strong>Before image</strong> or <strong>pre-image</strong> of the data before a transaction to enable rollback.
+                </KeyValue>
+               <KeyValue value={"Consistency"}>
+                   Make sure data validation and integrity rules are not violated. Usually the job of the application.
+               </KeyValue>
+              <KeyValue value={"Isolation"}>
+                  Transactions run in parallel should have the same effect as if they were run sequentially.
+                </KeyValue>
+                <KeyValue value={"Durability"}>
+                    Once a transaction is committed, the changes are made permanent.
+                </KeyValue>
+              <InfoBox>
+                  <p>
+                      <h4>Durability During Crashes</h4>
+                      <i>If a crash happens, any active transaction must be aborted & thus rolled back.</i>
+                      If they are in buffer waiting to be written to disk, they must still be rolled back.
+                  </p>
+              </InfoBox>
+              <KeyValue value={"Global Recovery"}>
+                  Used in cases of system or disk failure. Uses logging mechanisms to roll back transactions which were not persisted.
+                  <ul>
+                      <li>Transaction committed before crash - ensure written</li>
+                        <li>Transaction aborted before crash - ensure rolled back</li>
+                        <li>Transaction in progress before crash - ensure rolled back</li>
+                  </ul>
+                </KeyValue>
+              <InfoBox>
+                  The properties of atomicity, query isolation, and data durability are provided by the DBMS.
+              </InfoBox>
+              <InfoH3>Logging</InfoH3>
+              <KeyValue value={"Before Image"}>
+                    The state of the database before a transaction is executed. Allows undo.
+                </KeyValue>
+                <KeyValue value={"After Image"}>
+                    The state of the database after a transaction is executed. Allows redo.
+                </KeyValue>
+                <KeyValue value={"Update Log"}>
+                    Before image or after image.
+                </KeyValue>
+              <InfoBox>
+                  <p>
+                      <h4>What happens every time we write</h4>
+                      <code>
+                          for any write(x) of a transaction T;x residing on DB:
+                          <ul>
+                                <li>log before and after images of x</li>
+                                <li>write x to disk</li>
+                          </ul>
+                      </code>
+                      Log writes are super fast because they are sequential. Usually we use a separate log disk.
+                  </p>
+              </InfoBox>
+              <InfoBox>
+                  <p>
+                      <h4>When are logs written to disk</h4>
+                      <p>Logs are flushed to the log disk in two cases: before any commit confirmation, and before the data buffer flushes to the disk.</p>
+                  </p>
+              </InfoBox>
+              <KeyValue value={"Recovery"}>
+                  For each transaction, apply before image (undo) or after image (redo) to the database.
+              </KeyValue>
+              <KeyValue value={"commit/abort logs"}>
+                    <p>Logs that record the commit or abort of a transaction.</p>
+              </KeyValue>
+                <KeyValue value={"checkpointing"}>
+                    Provides the system with the knowledge that at this point, all transactions before this point have been committed properly. Reduces time intensity of recovery.
+                </KeyValue>
+              <InfoH3>Isolation & Concurrency Control</InfoH3>
+              <Image src={IMG_SERIAL_VS_NOT}/>
+                <KeyValue value={"Schedule"}>
+                    a sequence of actions (read, write, commit, abort) from a set of transactions. <i>A concurrent execution can have multiple schedules for the same transactions</i>
+                </KeyValue>
+              <KeyValue value={"complete schedule"}>
+                  contains commit/abort for each of its transactions
+              </KeyValue>
+              <KeyValue value={"serial schedule"}>
+                  Sequential only schedule
+                </KeyValue>
+              <KeyValue value={"Conflict"}>
+                  Two operations which may lead to data inconsistency. Either read and write or two writes at same time.
+                  <strong>Drawn as arrows pointing down</strong>              </KeyValue>
+
+              <TwoColumn>
+                  <div>
+                      <h4>Dirty Read</h4>
+                      <Image src={IMG_DIRTY_READ}/>
+                  </div>
+                    <div>
+                        <h4>Dirty Write</h4>
+                        <Image src={IMG_DIRTY_WRITE}/>
+                    </div>
+              </TwoColumn>
+          </PageSection>
+          <PageSection>
+              <KeyValue value={"lost update"}>
+                  changes made to the object by the first transaction are lost or overwritten by the second transaction
+              </KeyValue>
+              <KeyValue value={"unrepeatable read"}>
+                  occurs when a transaction reads an object twice, but some other transaction makes some change to that object in between the two reads
+              </KeyValue>
+              <InfoBox>
+                  <p>
+                      <h4>Databases can't lookahead</h4>
+                      The database does not know when an operation in a transaction is going to be executed in advance, so it cannot plan ahead to see what is going to happen. It can only do something when an operation is happening (for example, it can recognize a conflicting operation and prevent it from being executed).
+                  </p>
+              </InfoBox>
+              <KeyValue value={"Conflict equivalent schedules"}>
+                  two schedules are conflict equivalent if the conflicts in both of them are between the same operators and in the same direction.
+              </KeyValue>
+              <Image src={IMG_CONFLICT_EQUIVALENT}/>
+
+              <KeyValue value={"Serialization Graph"}>
+                    Transactions are nodes. Edges are conflicts, directed from the temporally first operation to the second.
+              </KeyValue>
+              <YesKey>
+                  Dependency graph == serialization graph == precedence graph
+              </YesKey>
+              <KeyValue value={"Conflict Serializable Schedule"}>
+                  a schedule S is conflict serializable if it is conflict equivalent to a serial schedule that contains the committed transactions of S. <strong>serialization graph is acyclic</strong>
+              </KeyValue>
+              <YesKey>Conflict Serializable Schedule == Serializable Schedule</YesKey>
+              <KeyValue value={"Concurrency control"}>
+                  during the execution of a schedule, the system takes measures such that a non-serializable execution never happens; enforcement of <strong>Isolation</strong>
+              </KeyValue>
+              <KeyValue value={"Concurrency Control Protocol"}>
+                  Implements concurrency control.
+              </KeyValue>
+              <ExampleH3>Serialization Graph from Schedule</ExampleH3>
+              <Image src={IMG_SERIAL_GRAPH_EXMPL}/>
+              <HowToH3>Serial Equivalent Schedule Creation</HowToH3>
+              <Image src={IMG_GUIDE_SERIAL_EQUIV}/>
+              <InfoH3>Concurrency control: two-phase locking (2PL)</InfoH3>
+              <KeyValue value={"Shared lock (S)"}>
+                  each transaction must obtain S on the object before reading; If S is granted on object O, no X might be granted on O. However, S can be granted on O to some other transaction (hence the name shared lock).
+              </KeyValue>
+              <WarningBox>The only exception to the shared lock rule is when NO OTHER TRANSACTION has S on O, in which case, the transaction will be able to obtain X on O.</WarningBox>
+            <KeyValue value={"Exclusive lock (X)"}>
+                each transaction must obtain X on the object before writing; If X is granted on object O, no other lock (X or S) might be granted on O at the same time.
+            </KeyValue>
+              <InfoBox>If a conflicting lock is active, the transaction must wait until the lock is released.</InfoBox>
+        <KeyValue value={"strict two-phase locking (S2PL)"}>
+            once a transaction goes into the second phase i.e., starts releasing locks, it can no longer try to acquire locks on any object anymore
+        </KeyValue>
+        <YesKey>
+            S2PL only allows serializable schedules, and strictness ensures that there are no dirty reads or dirty writes in the schedule
+        </YesKey>
+              <YesKey>
+                  Locking and unlocking are atomic.
+              </YesKey>
+              <NoKey>
+                  A transaction requests the same lock twice
+              </NoKey>
+              <YesKey>
+                  A transaction does not need to request an S lock on an object for which already holds an X lock
+              </YesKey>
+              <YesKey>
+                  If a transaction has an S lock and it needs an X lock on the same object, it must wait until all other S locks on that object (except its own, of course) are released.
+              </YesKey>
+              <InfoBox>
+                  <p>
+                      <h4>Locks & Abort</h4>
+                      In case of an abort, the locks are released after executing the recovery mechanism and undoing the changes.
+                  </p>
+              </InfoBox>
+                <strong>2PL continues on the next page</strong>
 
           </PageSection>
       </PageColumns>

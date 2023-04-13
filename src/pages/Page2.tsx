@@ -46,7 +46,7 @@ export const Page2: React.FC<{}> = () => {
           <YesKey>A relation is assumed to be a set (no duplicates)</YesKey>
           <InfoBox>
             <p>
-              <strong>Mathematical QLs</strong> form the basis for relational
+              <h4>Mathematical QLs</h4> Mathematical QLs form the basis for relational
               QLs. They are implemented using
               <strong>Relational algebra</strong>: it’s a simple abstraction
               where a query is a sequence of operations on data. It is very
@@ -98,6 +98,7 @@ export const Page2: React.FC<{}> = () => {
           </p>
           <InfoBox>
             <p>
+              <h4>Cross Product Additional Info</h4>
               This operator essentially takes data from multiple tables and
               pushes it into one, even if it duplicates a lot of info. Example:
               with a join table, all relationships are put in the table and will
@@ -109,7 +110,7 @@ export const Page2: React.FC<{}> = () => {
           </KeyValue>
           <p>
             Cross-product, combined with a selection of attributes from both
-            relations (i.e., some condition)
+            relations
           </p>
           <h4>Join Types</h4>
           <KeyValue value={"Condition / Theta Join"}>
@@ -291,7 +292,8 @@ export const Page2: React.FC<{}> = () => {
           </h4>
           <InfoBox>
             <p>
-              note that although tempted, never write queries by just looking at
+              <h4>Don't write queries based on example data.</h4>
+              Note that although tempted, never write queries by just looking at
               sample data. It might miss capturing the bigger picture. Here, it
               might seem that there are only two types of competitions, hence
               it’s futile to use selection on table $C$, but that might not be

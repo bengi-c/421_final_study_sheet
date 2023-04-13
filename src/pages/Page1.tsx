@@ -75,9 +75,12 @@ export const Page1: React.FC<{}> = () => {
           </KeyValue>
           <YesKey>One to one bidirectional</YesKey>
           <InfoBox>
-            In a nutshell, key constraint (arrow) ⇒ at most one; participation
-            constraint (thick line) ⇒ at least once. The affected entity set is
-            joined to the relationship by the appropriate notation.
+            <p>
+              <h4>Symbols Summary</h4>
+              In a nutshell, key constraint (arrow) ⇒ at most one; participation
+              constraint (thick line) ⇒ at least once. The affected entity set is
+              joined to the relationship by the appropriate notation.</p>
+
           </InfoBox>
           <Image src={ImgER1} alt={"ER Diagram"} />
           <InfoH3>Symbol Glossary</InfoH3>
@@ -111,9 +114,11 @@ export const Page1: React.FC<{}> = () => {
             Data Manipulation Language (DML)
           </KeyValue>
           <InfoBox>
+            <p>
+              <h4>On Abstraction</h4>
             Being a data-centric language means that it is independent of the
             physical/file format the data is stored in. The querying syntax
-            remains the same. It’s like an abstraction.
+            remains the same. It’s like an abstraction.</p>
           </InfoBox>
           <InfoH3>Constraints</InfoH3>
           <h4>Integrity Constraints (IC)</h4>
@@ -190,29 +195,39 @@ export const Page1: React.FC<{}> = () => {
           </OrderedList>
           <InfoH3>Additional ER Tips N Tricks</InfoH3>
           <InfoBox>
+            <p>
+              <h4>Keys & Inheritance in ER Models ISA</h4>
             Note that in ER models, subclasses don’t have a key attribute of
             their own since that would be redundant. However, in relational
             models, sub-tables have primary key attributes, which represent a
             reference to the parent table. This is NOT redundant but rather the
             encoding of ISA symbol.
+            </p>
           </InfoBox>
           <InfoBox>
-            Another approach to translating ISA hierarchies would be to have one
-            big relation with all the possible attributes in various subclasses.
-            It would make querying simpler, however, the disadvantage is that it
-            would have a lot of `NULL` values that waste storage space.
-            Moreover, it would no longer be possible to have relationships that
-            can occur selectively only with certain subclasses.
+            <p>
+                <h4>Weak Entity Sets</h4>
+              <strong>Definition: Weak entry set has no primary key and is defined only in terms of other entities</strong>
+              Another approach to translating ISA hierarchies would be to have one
+              big relation with all the possible attributes in various subclasses.
+              It would make querying simpler, however, the disadvantage is that it
+              would have a lot of `NULL` values that waste storage space.
+              Moreover, it would no longer be possible to have relationships that
+              can occur selectively only with certain subclasses
+            </p>
           </InfoBox>
           <ExampleH3>Converting ER to Relational</ExampleH3>
           <Image src={ImageERRM1} alt={"ER Diagram"} />
           <Image src={ImageERRM2} alt={"ER Diagram"} />
           <Image src={ImageERRM3} alt={"ER Diagram"} />
           <InfoBox>
+            <p>
+              <h4>Cascade</h4>
             There is an option to cascade delete the rows in all foreign tables,
             in case the row is deleted from the parent table. For example, if a
             row is deleted from Students, it would also be deleted from
             Enrolled.
+            </p>
           </InfoBox>
         </PageSection>
 
