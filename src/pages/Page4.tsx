@@ -18,6 +18,7 @@ import IMG_MULTI_ATTR_IDXING from "../assets/images/multi_attr_idxing.png";
 import IMG_SEARCH_BP_TREE from "../assets/images/search_bp_tree.png";
 import IMG_SEARCH_BP_TREE_2 from "../assets/images/search_bp_tree_2.png";
 import IMG_STATIC_HASH from "../assets/images/static_hash.png";
+import IMG_EXEC_TREE_EXMPL from "../assets/images/exec_tree_exmpl.png";
 
 export const Page4: React.FC<{}> = () => {
   return (
@@ -399,7 +400,34 @@ export const Page4: React.FC<{}> = () => {
               </li>
             </ul>
           </KeyValue>
-          {/*    TODO: Finish query evaluation topic */}
+          <ExampleH3>Execution Tree for SQL Query</ExampleH3>
+          <Image src={IMG_EXEC_TREE_EXMPL} />
+          <InfoH3>Operators & Calculations</InfoH3>
+          <h4>Selection</h4>
+          <KeyValue value={"Selectivity or reduction factor"}>
+            <Latex>{`$\\text{Red}\\mid\\sigma_{\\text{condition}}(R)\\mid = \\dfrac{\\mid\\sigma_{\\text{condition}}(R)\\mid}{\\mid R \\mid}$`}</Latex>{" "}
+            (refers to the number of records from a given relation that would
+            qualify if the selection condition is applied to the relation.)
+          </KeyValue>
+          <InfoBox>
+            <p>
+              <h4>Handling Unknwon Selectivity - Assume Uniform Random</h4>
+              The database might not always know the exact number of records
+              that qualify the selection condition. In such cases, it uses an
+              approximate guess by assuming that the records are
+              independently-uniformly distributed for the attributes. The
+              database generally stores some statistics (such as the number of
+              different values, how many of a certain value exist, max, min,
+              etc.) regarding the data it stores. These statistics, along with
+              any indexes available, help in getting approximations that are
+              used in creating an execution plan.
+              <i>
+                If the reduction factor is known, we can compute the result size
+                after applying a particular condition. This approximation is
+                used in creating execution plans.
+              </i>
+            </p>
+          </InfoBox>
         </PageSection>
       </PageColumns>
     </A4Paper>

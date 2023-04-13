@@ -125,3 +125,32 @@ export const OrderedList = styled.ol`
     border-bottom: none;
   }
 `;
+
+export const Table = styled.table`
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 90%;
+  line-height: 1.2;
+  font-weight: 300;
+  margin: 1em 0;
+  & th {
+    text-align: left;
+    padding: 0.5em;
+    border-bottom: 1px solid rgba(130, 130, 130, 0.5);
+    background-color: rgba(130, 130, 130, 0.1);
+  }
+  & td {
+    font-family: "Roboto Condensed", sans-serif;
+    padding: 0.5em;
+    border-bottom: 1px solid rgba(130, 130, 130, 0.5);
+    border-right: 1px solid rgba(130, 130, 130, 0.1);
+  }
+
+  & tr:last-child td {
+    border-bottom: none;
+  }
+
+  & tr td:last-child {
+    border-right: none;
+  }
+`;

@@ -21,8 +21,8 @@ import IMG_DEADLOCK_DETEC from "../assets/images/deadlock_detec.png";
 import IMG_S2PL from "../assets/images/s2pl.png";
 import IMG_GRAPH_DB from "../assets/images/graph_db.png";
 import IMG_CYPHER_COUNT_GUIDE from "../assets/images/cypher_count_guide.png";
-import {CYPHER_Q1, CYPHER_Q2} from "../assets/Code";
-import {Cypher} from "../components/Code";
+import { CYPHER_Q1, CYPHER_Q2 } from "../assets/Code";
+import { Cypher } from "../components/Code";
 
 export const Page8: React.FC<{}> = () => {
   return (
@@ -117,148 +117,151 @@ export const Page8: React.FC<{}> = () => {
               language.
             </p>
           </InfoBox>
-            <Image style={{width: "80%"}} src={IMG_GRAPH_DB}/>
+          <Image style={{ width: "80%" }} src={IMG_GRAPH_DB} />
         </PageSection>
-          <PageSection>
-              <HowToH3>Writing Queries in Cypher</HowToH3>
-              <ol>
-                  <li>
-                      <p>Basic syntax and concepts:</p>
-                      <ul>
-                          <li>
-                              Nodes: <code>()</code>, <code>(n)</code>,{" "}
-                              <code>(:Ntype)</code>, <code>(n:Ntype)</code>
-                          </li>
-                          <li>
-                              Relationships: <code>[]</code>, <code>[r]</code>,{" "}
-                              <code>[:RTYPE]</code>, <code>[r:RTYPE]</code>
-                          </li>
-                          <li>
-                              Properties:{" "}
-                              <code>{`(n:Ntype {property1: "value", property2:"value", ...})`}</code>
-                          </li>
-                          <li>
-                              Directional edges:{" "}
-                              <code>(n:Node)-[:RELATIONSHIP]-&gt;()</code>,{" "}
-                              <code>(n)&lt;-[]-(:Ntype)</code>
-                          </li>
-                          <li>
-                              Non-directional edges:{" "}
-                              <code>(n:Node)-[:RELATIONSHIP]-()</code>,{" "}
-                              <code>(n)-[]-(:Ntype)</code>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <p>Select, project, and join:</p>
-                      <ul>
-                          <li>
-                              <code>MATCH (n:Node)-[:RELATIONSHIP]-&gt;(m:Node)</code>
-                          </li>
-                          <li>
-                              <code>RETURN n.property, m.property</code>
-                          </li>
-                          <li>
-                              Multiple patterns: <code>MATCH pattern1, pattern2, ...</code>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <p>Set operations:</p>
-                      <ul>
-                          <li>
-                              Constraints: <code>CREATE CONSTRAINT ON &lt;pattern&gt;</code>
-                          </li>
-                          <li>
-                              Updating properties: <code>SET n.property = "value"</code>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <p>Insert:</p>
-                      <ul>
-                          <li>
-                              Nodes:{" "}
-                              <code>{`CREATE (n:Ntype {property1: "value", property2: "value"})`}</code>
-                          </li>
-                          <li>
-                              Relationships:{" "}
-                              <code>
-                                  {`CREATE (n1)-[r:RTYPE {property1: "value"}]`}-&gt;(n2)
-                              </code>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <p>Delete:</p>
-                      <ul>
-                          <li>
-                              Nodes:{" "}
-                              <code>{`MATCH (n:Ntype {id: 101}) DETACH DELETE n`}</code>
-                          </li>
-                          <li>
-                              Relationships:{" "}
-                              <code>MATCH (n1:Ntype)-[r:RTYPE]-(n2:Ntype) DELETE r</code>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <p>WHERE conditions and filtering:</p>
-                      <ul>
-                          <li>
-                              <code>
-                                  MATCH (n:Node)-[:RELATIONSHIP]-&gt;(m:Node) WHERE n.property
-                                  = "value" AND m.property &gt;= 10
-                              </code>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <p>ORDER BY and LIMIT:</p>
-                      <ul>
-                          <li>
-                              <code>
-                                  RETURN n.property, m.property ORDER BY n.property DESC LIMIT
-                                  5
-                              </code>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <p>Patterns with traversal depth:</p>
-                      <ul>
-                          <li>
-                              <code>MATCH (n:Node)-[:RELATIONSHIP*2]-(m:Node)</code>
-                          </li>
-                      </ul>
-                  </li>
-                  <Image src={IMG_CYPHER_COUNT_GUIDE}></Image>
-                  <li>
-                      <p>Shortest path algorithm:</p>
-                      <ul>
-                          <li>
-                              <code>
-                                  MATCH p=shortestPath((n1:Node)-[*]-(n2:Node)) RETURN p
-                              </code>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <p>Recommendations (example: co-actors):</p>
-                      <ul><li><code>MATCH (n:Person)-[:ACTED_IN]-&gt;(m:Movie)&lt;-[:ACTED_IN]-(coActor:Person) WHERE n.name = "Tom Hanks" RETURN DISTINCT coActor.name</code></li></ul>
-                  </li>
-              </ol>
-              <ExampleH3>Cypher Queries</ExampleH3>
-              <Cypher code={CYPHER_Q1}>
-              </Cypher>
-              returns: <code>
-              {`{keeanu.name: "Keeanu", keeanu.born: 1964}`}
-          </code>
-              <Cypher code={CYPHER_Q2}>
-                </Cypher>
-                returns: a list of objects with name and born properties
-
-          </PageSection>
+        <PageSection>
+          <HowToH3>Writing Queries in Cypher</HowToH3>
+          <ol>
+            <li>
+              <p>Basic syntax and concepts:</p>
+              <ul>
+                <li>
+                  Nodes: <code>()</code>, <code>(n)</code>,{" "}
+                  <code>(:Ntype)</code>, <code>(n:Ntype)</code>
+                </li>
+                <li>
+                  Relationships: <code>[]</code>, <code>[r]</code>,{" "}
+                  <code>[:RTYPE]</code>, <code>[r:RTYPE]</code>
+                </li>
+                <li>
+                  Properties:{" "}
+                  <code>{`(n:Ntype {property1: "value", property2:"value", ...})`}</code>
+                </li>
+                <li>
+                  Directional edges:{" "}
+                  <code>(n:Node)-[:RELATIONSHIP]-&gt;()</code>,{" "}
+                  <code>(n)&lt;-[]-(:Ntype)</code>
+                </li>
+                <li>
+                  Non-directional edges:{" "}
+                  <code>(n:Node)-[:RELATIONSHIP]-()</code>,{" "}
+                  <code>(n)-[]-(:Ntype)</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>Select, project, and join:</p>
+              <ul>
+                <li>
+                  <code>MATCH (n:Node)-[:RELATIONSHIP]-&gt;(m:Node)</code>
+                </li>
+                <li>
+                  <code>RETURN n.property, m.property</code>
+                </li>
+                <li>
+                  Multiple patterns: <code>MATCH pattern1, pattern2, ...</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>Set operations:</p>
+              <ul>
+                <li>
+                  Constraints: <code>CREATE CONSTRAINT ON &lt;pattern&gt;</code>
+                </li>
+                <li>
+                  Updating properties: <code>SET n.property = "value"</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>Insert:</p>
+              <ul>
+                <li>
+                  Nodes:{" "}
+                  <code>{`CREATE (n:Ntype {property1: "value", property2: "value"})`}</code>
+                </li>
+                <li>
+                  Relationships:{" "}
+                  <code>
+                    {`CREATE (n1)-[r:RTYPE {property1: "value"}]`}-&gt;(n2)
+                  </code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>Delete:</p>
+              <ul>
+                <li>
+                  Nodes:{" "}
+                  <code>{`MATCH (n:Ntype {id: 101}) DETACH DELETE n`}</code>
+                </li>
+                <li>
+                  Relationships:{" "}
+                  <code>MATCH (n1:Ntype)-[r:RTYPE]-(n2:Ntype) DELETE r</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>WHERE conditions and filtering:</p>
+              <ul>
+                <li>
+                  <code>
+                    MATCH (n:Node)-[:RELATIONSHIP]-&gt;(m:Node) WHERE n.property
+                    = "value" AND m.property &gt;= 10
+                  </code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>ORDER BY and LIMIT:</p>
+              <ul>
+                <li>
+                  <code>
+                    RETURN n.property, m.property ORDER BY n.property DESC LIMIT
+                    5
+                  </code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>Patterns with traversal depth:</p>
+              <ul>
+                <li>
+                  <code>MATCH (n:Node)-[:RELATIONSHIP*2]-(m:Node)</code>
+                </li>
+              </ul>
+            </li>
+            <Image src={IMG_CYPHER_COUNT_GUIDE}></Image>
+            <li>
+              <p>Shortest path algorithm:</p>
+              <ul>
+                <li>
+                  <code>
+                    MATCH p=shortestPath((n1:Node)-[*]-(n2:Node)) RETURN p
+                  </code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>Recommendations (example: co-actors):</p>
+              <ul>
+                <li>
+                  <code>
+                    MATCH
+                    (n:Person)-[:ACTED_IN]-&gt;(m:Movie)&lt;-[:ACTED_IN]-(coActor:Person)
+                    WHERE n.name = "Tom Hanks" RETURN DISTINCT coActor.name
+                  </code>
+                </li>
+              </ul>
+            </li>
+          </ol>
+          <ExampleH3>Cypher Queries</ExampleH3>
+          <Cypher code={CYPHER_Q1}></Cypher>
+          returns: <code>{`{keeanu.name: "Keeanu", keeanu.born: 1964}`}</code>
+          <Cypher code={CYPHER_Q2}></Cypher>
+          returns: a list of objects with name and born properties
+        </PageSection>
       </PageColumns>
     </A4Paper>
   );

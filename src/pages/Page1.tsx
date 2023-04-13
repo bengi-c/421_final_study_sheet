@@ -24,7 +24,7 @@ import { SQL } from "../components/Code";
 import {
   SQL_CREATE_EXAMPLE,
   SQL_DELETE_EXAMPLE,
-  SQL_INSERT_EXAMPLE,
+  SQL_INSERT_EXAMPLE, SQL_PRACTFIN_Q3,
   SQL_SELECT_EXAMPLE,
   SQL_UPDATE_EXAMPLE,
 } from "../assets/Code";
@@ -233,10 +233,16 @@ export const Page1: React.FC<{}> = () => {
               deleted from Enrolled.
             </p>
           </InfoBox>
-          <Image src={IMG_JBDC_CONN}/>
+          <Image src={IMG_JBDC_CONN} />
           <InfoBox>
             <p>
-              <h4>SQL in PLs - Two vs 3 Tier</h4> Two-tier model has direct communication between application and database, offering flexibility but potential security issues and upgrade problems. Three-tier model separates client, middleware, and backend, improving security and organization. Web servers handle network protocols, application servers implement business logic, and connection pooling optimizes database connections.
+              <h4>SQL in PLs - Two vs 3 Tier</h4> Two-tier model has direct
+              communication between application and database, offering
+              flexibility but potential security issues and upgrade problems.
+              Three-tier model separates client, middleware, and backend,
+              improving security and organization. Web servers handle network
+              protocols, application servers implement business logic, and
+              connection pooling optimizes database connections.
             </p>
           </InfoBox>
         </PageSection>
@@ -330,6 +336,10 @@ export const Page1: React.FC<{}> = () => {
           <InfoBox>
             <p>All the different joins fall under the JOIN keyword.</p>
           </InfoBox>
+          <ExampleH3>SQL Query (from practice final)</ExampleH3>
+          <i> Find the psid of parents who have more than one child, of which at least one of them is a
+            female child.</i>
+            <SQL code={SQL_PRACTFIN_Q3} />
         </PageSection>
       </PageColumns>
     </A4Paper>

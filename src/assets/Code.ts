@@ -105,14 +105,12 @@ DUMP badyears;
 -- Send the output to the screen.
 DUMP orderdbadyears;`;
 
-
 export const CYPHER_Q1 = `MATCH (keanu:Person {name:'Keanu Reeves'})
 RETURN keanu.name, keanu.born`;
 
 export const CYPHER_Q2 = `MATCH (bornInEighties:Person)
 WHERE bornInEighties.born >= 1980 AND bornInEighties.born < 1990
-RETURN bornInEighties.name as name, bornInEighties.born as born ORDER BY born DESC`
-
+RETURN bornInEighties.name as name, bornInEighties.born as born ORDER BY born DESC`;
 
 export const SQL_VIEW = `CREATE VIEW activeSkaters (sid, sname) AS 
 \t\tSELECT DISTINCT S.sid, S.sname
@@ -125,14 +123,14 @@ FROM activeSkaters
 WHERE sname = 'john';
 
 -- delete a view using the DROP VIEW clause
-DROP VIEW activeSkaters;`
+DROP VIEW activeSkaters;`;
 
 export const SQL_NESTED = `-- find names of skaters who have participated in competition #101
 SELECT sname
 FROM skaters
 WHERE sid IN (SELECT sid 
 \t\t\t\t\t\t\tFROM participates 
-\t\t\t\t\t\t\tWHERE cid = 101);`
+\t\t\t\t\t\t\tWHERE cid = 101);`;
 
 export const SQL_AGGREGATION = `-- find the average age and number of skaters with rating 7
 SELECT AVG(age), COUNT(*)
@@ -152,7 +150,7 @@ FROM skaters;
 SELECT sname
 FROM skaters
 WHERE rating = (SELECT MAX(rating) 
-\t\t\t\t\t\t\t\tFROM skaters);`
+\t\t\t\t\t\t\t\tFROM skaters);`;
 
 export const SQL_IC = `CREATE TABLE skaters (
  sid INT NOT NULL,
@@ -161,4 +159,17 @@ export const SQL_IC = `CREATE TABLE skaters (
  age INT,
  CONSTRAINT pk PRIMARY KEY (sid),
  CONSTRAINT ratage CHECK(rating > 0 AND age > 13) --tuple based
-);`
+);`;
+
+export const SQL_PRACTFIN_Q3 = `SELECT psid
+FROM Child
+WHERE psid IN ( SELECT psid FROM Child WHERE sgender = 'female' ) GROUP BY psid
+HAVING COUNT(*) > 1;`;
+
+
+export const SQL_PRACTFIN_Q4_1 = `SELECT s.ssid, s.sname,
+SUM(s.hourlyRate*b.totalhrs*(1+0.50*addnlChildren))
+FROM sitter s, babySitting b
+WHERE s.ssid = b.ssid
+AND b.availDate BETWEEN ’2017-03-01’ AND ’2017-03-05’
+GROUP BY s.ssid, s.sname`
