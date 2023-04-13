@@ -16,8 +16,12 @@ import { Modal } from "./components/Modal";
 import { KeyValue, NoKey, YesKey } from "./components/KeyValue";
 import { Page2 } from "./pages/Page2";
 import { TestPage } from "./pages/TestPage";
-import {Page3} from "./pages/Page3";
-import {Page4} from "./pages/Page4";
+import { Page3 } from "./pages/Page3";
+import { Page4 } from "./pages/Page4";
+import { Page5 } from "./pages/Page5";
+import { Page6 } from "./pages/Page6";
+import { Page7 } from "./pages/Page7";
+import { Page8 } from "./pages/Page8";
 
 function App() {
   const [showHelp, setShowHelp] = useState(false);
@@ -90,10 +94,18 @@ function App() {
       <Page1 />
       <h1>Page 2</h1>
       <Page2 />
-        <h1>Page 3</h1>
-        <Page3 />
-        <h1>Page 4</h1>
-        <Page4 />
+      <h1>Page 3</h1>
+      <Page3 />
+      <h1>Page 4</h1>
+      <Page4 />
+      <h1>Page 5</h1>
+      <Page5 />
+      <h1>Page 6</h1>
+      <Page6 />
+      <h1>Page 7</h1>
+      <Page7 />
+      <h1>Page 8</h1>
+      <Page8 />
 
       <h1>Test Page</h1>
       <TestPage />

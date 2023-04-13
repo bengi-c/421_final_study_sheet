@@ -1,18 +1,21 @@
 import { A4Paper, Image } from "../components/Paper";
 import React from "react";
 import { PageHeader } from "../components/PageHeader";
-import {
-  OrderedList,
-  PageColumns,
-  PageSection,
-} from "../components/Layout";
+import { OrderedList, PageColumns, PageSection } from "../components/Layout";
 import { KeyValue, NoKey, YesKey } from "../components/KeyValue";
 import "katex/dist/katex.min.css";
 import { FaGithub } from "react-icons/fa";
 
 import ImgER1 from "../assets/images/er-1.png";
 import { LatexSymbol } from "../components/Latex";
-import {Example, ExampleH3, HowTo, HowToH3, Info, InfoH3} from "../components/QuickSymbols";
+import {
+  Example,
+  ExampleH3,
+  HowTo,
+  HowToH3,
+  Info,
+  InfoH3,
+} from "../components/QuickSymbols";
 
 import ImageERRM1 from "../assets/images/er_to_rm_1.png";
 import ImageERRM2 from "../assets/images/er_to_rm_2.png";
@@ -39,9 +42,7 @@ export const Page1: React.FC<{}> = () => {
       </PageHeader>
       <PageColumns>
         <PageSection>
-          <InfoH3>
-            Entities & Relationships
-          </InfoH3>
+          <InfoH3>Entities & Relationships</InfoH3>
           <YesKey>Entity == Class == Table</YesKey>
           <YesKey>Relationship == Association == Foreign Key</YesKey>
           <p>Constraints</p>
@@ -51,9 +52,7 @@ export const Page1: React.FC<{}> = () => {
           <KeyValue value={"Covering"}>
             Must an entity belong to a subclass?
           </KeyValue>
-          <InfoH3>
-            Relationships
-          </InfoH3>
+          <InfoH3>Relationships</InfoH3>
           <KeyValue value={"ISA / is a"}>
             Subclass == Child Class == Child Table
           </KeyValue>
@@ -79,9 +78,7 @@ export const Page1: React.FC<{}> = () => {
             joined to the relationship by the appropriate notation.
           </InfoBox>
           <Image src={ImgER1} alt={"ER Diagram"} />
-          <InfoH3>
-            Symbol Glossary
-          </InfoH3>
+          <InfoH3>Symbol Glossary</InfoH3>
           <KeyValue value={"Entity"}>Rectangle</KeyValue>
           <KeyValue value={"Relationship"}>Diamond</KeyValue>
           <KeyValue value={"ISA"}>Triangle</KeyValue>
@@ -97,13 +94,10 @@ export const Page1: React.FC<{}> = () => {
             A schema can be considered an entity set, while an instance is
             comparable to an entity.
           </InfoBox>
-          <InfoH3>
-            Schemas & Relation
-          </InfoH3>
-          - **Schema**: specifies the name of the relation, plus a set of
-          attributes along with their domain/data type. - Example:
-          `Students(sid: int, name: string, login:string, faculty: string,
-          major:string)`.
+          <InfoH3>Schemas & Relation</InfoH3>- **Schema**: specifies the name of
+          the relation, plus a set of attributes along with their domain/data
+          type. - Example: `Students(sid: int, name: string, login:string,
+          faculty: string, major:string)`.
           <KeyValue value={"defines the schema of a relational database."}>
             Data Definition Language (DDL)
           </KeyValue>
@@ -119,9 +113,7 @@ export const Page1: React.FC<{}> = () => {
             physical/file format the data is stored in. The querying syntax
             remains the same. It’s like an abstraction.
           </InfoBox>
-          <InfoH3>
-             Constraints
-          </InfoH3>
+          <InfoH3>Constraints</InfoH3>
           <h4>Integrity Constraints (IC)</h4>
           <KeyValue value={"NOT NULL"}>
             A column cannot contain NULL values.
@@ -137,9 +129,7 @@ export const Page1: React.FC<{}> = () => {
           </KeyValue>
         </PageSection>
         <PageSection>
-          <HowToH3>
-             ER Diagram {"->"} Relational Schema{" "}
-          </HowToH3>
+          <HowToH3>ER Diagram {"->"} Relational Schema </HowToH3>
           <OrderedList>
             <li>
               Entity set → relation: Convert each entity set into a table and
@@ -193,9 +183,7 @@ export const Page1: React.FC<{}> = () => {
               the superclass as a foreign key and any additional attributes.
             </li>
           </OrderedList>
-          <InfoH3>
-             Additional ER Tips N Tricks
-          </InfoH3>
+          <InfoH3>Additional ER Tips N Tricks</InfoH3>
           <InfoBox>
             Note that in ER models, subclasses don’t have a key attribute of
             their own since that would be redundant. However, in relational
@@ -204,29 +192,27 @@ export const Page1: React.FC<{}> = () => {
             encoding of ISA symbol.
           </InfoBox>
           <InfoBox>
-            Another approach to translating ISA hierarchies would be to have
-            one big relation with all the possible attributes in various
-            subclasses. It would make querying simpler, however, the
-            disadvantage is that it would have a lot of `NULL` values that waste
-            storage space. Moreover, it would no longer be possible to have
-            relationships that can occur selectively only with certain
-            subclasses.
+            Another approach to translating ISA hierarchies would be to have one
+            big relation with all the possible attributes in various subclasses.
+            It would make querying simpler, however, the disadvantage is that it
+            would have a lot of `NULL` values that waste storage space.
+            Moreover, it would no longer be possible to have relationships that
+            can occur selectively only with certain subclasses.
           </InfoBox>
-          <ExampleH3>
-            Converting ER to Relational
-          </ExampleH3>
+          <ExampleH3>Converting ER to Relational</ExampleH3>
           <Image src={ImageERRM1} alt={"ER Diagram"} />
           <Image src={ImageERRM2} alt={"ER Diagram"} />
           <Image src={ImageERRM3} alt={"ER Diagram"} />
           <InfoBox>
-            There is an option to cascade delete the rows in all foreign tables, in case the row is deleted from the parent table. For example, if a row is deleted from Students,  it would also be deleted from Enrolled.
+            There is an option to cascade delete the rows in all foreign tables,
+            in case the row is deleted from the parent table. For example, if a
+            row is deleted from Students, it would also be deleted from
+            Enrolled.
           </InfoBox>
         </PageSection>
 
         <PageSection>
-          <InfoH3>
-            SQL Types
-          </InfoH3>
+          <InfoH3>SQL Types</InfoH3>
           <KeyValue value={"CHAR(n)"}>
             Fixed-length string of length n. Example: `CHAR(5)` can store a
             string of length 5.
@@ -254,9 +240,7 @@ export const Page1: React.FC<{}> = () => {
             Bit string or a BLOB, i.e., a binary large object. Raw bits.
           </KeyValue>
           <YesKey>User Defined Custom Types (uncommon)</YesKey>
-          <ExampleH3>
-            Basic SQL
-          </ExampleH3>
+          <ExampleH3>Basic SQL</ExampleH3>
           <h4>Create Table</h4>
           <SQL code={SQL_CREATE_EXAMPLE} />
           <h4>Insert tuple into table</h4>
@@ -270,41 +254,53 @@ export const Page1: React.FC<{}> = () => {
           <InfoH3> SQL Keywords</InfoH3>
           <KeyValue value={"LIMIT n"}>
             Limits the number of rows returned by the query to n.
-            </KeyValue>
-            <KeyValue value={"ORDER BY"}>
+          </KeyValue>
+          <KeyValue value={"ORDER BY"}>
             Sorts the rows returned by the query in ascending order.
-            </KeyValue>
-            <KeyValue value={"ORDER BY DESC"}>
+          </KeyValue>
+          <KeyValue value={"ORDER BY DESC"}>
             Sorts the rows returned by the query in descending order.
-            </KeyValue>
-            <KeyValue value={"WHERE"}>
+          </KeyValue>
+          <KeyValue value={"WHERE"}>
             Filters the rows returned by the query.
-            </KeyValue>
-            <KeyValue value={"GROUP BY"}>
+          </KeyValue>
+          <KeyValue value={"GROUP BY"}>
             Groups the rows returned by the query.
-            </KeyValue>
-           <KeyValue value={"DISTINCT"}>
-            Returns only distinct rows.
-            </KeyValue>
-            <KeyValue value={"||"}>
-              <p>Concatenates two strings. IE <code>firstName {`|| ',' ||`} lastName</code> returns <code>John,Doe</code></p>
-            </KeyValue>
-            <KeyValue value={"AND"}>
-                <p>Logical AND. IE <code>firstName = 'John' {`AND`} lastName = 'Doe'</code> returns <code>John,Doe</code></p>
-            </KeyValue>
-    <KeyValue value={"BETWEEN"}>
-                <p>Get tuples between two inclusive values. IE <code>age {`BETWEEN`} 18 {`AND`} 25</code> returns all 18-25yo. Works on Date & all too not just numbers.</p>
-            </KeyValue>
+          </KeyValue>
+          <KeyValue value={"DISTINCT"}>Returns only distinct rows.</KeyValue>
+          <KeyValue value={"||"}>
+            <p>
+              Concatenates two strings. IE{" "}
+              <code>firstName {`|| ',' ||`} lastName</code> returns{" "}
+              <code>John,Doe</code>
+            </p>
+          </KeyValue>
+          <KeyValue value={"AND"}>
+            <p>
+              Logical AND. IE{" "}
+              <code>firstName = 'John' {`AND`} lastName = 'Doe'</code> returns{" "}
+              <code>John,Doe</code>
+            </p>
+          </KeyValue>
+          <KeyValue value={"BETWEEN"}>
+            <p>
+              Get tuples between two inclusive values. IE{" "}
+              <code>
+                age {`BETWEEN`} 18 {`AND`} 25
+              </code>{" "}
+              returns all 18-25yo. Works on Date & all too not just numbers.
+            </p>
+          </KeyValue>
           <InfoBox>
             <p>
-              To use a cross product, list off relations after the FROM clause like <code>SELECT * FROM skaters, participants;</code>
+              To use a cross product, list off relations after the FROM clause
+              like <code>SELECT * FROM skaters, participants;</code>
             </p>
           </InfoBox>
           <InfoBox>
             <p>All the different joins fall under the JOIN keyword.</p>
           </InfoBox>
-        {/*  TODO: Operators and all below in sarvasvs notes*/}
-
+          {/*  TODO: Operators and all below in sarvasvs notes*/}
         </PageSection>
       </PageColumns>
     </A4Paper>

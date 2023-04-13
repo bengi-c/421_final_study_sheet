@@ -1,4 +1,4 @@
-import {Callout} from "./Layout";
+import { Callout } from "./Layout";
 import styled from "styled-components";
 
 export const WarningBox = styled(Callout)`
@@ -12,7 +12,7 @@ export const WarningBox = styled(Callout)`
     margin-right: 0.5em;
     display: inline-block;
   }
-`
+`;
 
 export const InfoBox = styled(Callout)`
   background: rgb(255, 253, 251);
@@ -24,7 +24,7 @@ export const InfoBox = styled(Callout)`
     margin-right: 0.5em;
     display: inline-block;
   }
-`
+`;
 
 export const MetaBox = styled(Callout)`
   background: rgb(253, 244, 249);
@@ -36,4 +36,4 @@ export const MetaBox = styled(Callout)`
     margin-right: 0.5em;
     display: inline-block;
   }
-`
+`;

@@ -30,10 +30,10 @@ export const SyntaxHighlight: React.FC<SyntaxHighlightProps> = ({
         whiteSpace: "pre-wrap",
         wordWrap: "break-word",
         fontSize: "85%",
-          borderRadius: "1mm",
-            padding: "0.5mm",
-          boxShadow: "0 0 0.5mm rgba(0, 0, 0, 0.2)",
-          margin: "0.5mm 0 0.55mm"
+        borderRadius: "1mm",
+        padding: "0.5mm",
+        boxShadow: "0 0 0.5mm rgba(0, 0, 0, 0.2)",
+        margin: "0.5mm 0 0.55mm",
       }}
       wrapLines={true}
       wrapLongLines={true}
@@ -53,4 +53,8 @@ export const Java: React.FC<CodeProps> = ({ code }) => (
 
 export const TypeScript: React.FC<CodeProps> = ({ code }) => (
   <SyntaxHighlight language="typescript" code={code} />
+);
+
+export const PigLatin: React.FC<CodeProps> = ({ code }) => (
+    <SyntaxHighlight language="piglatin" code={code} />
 );
