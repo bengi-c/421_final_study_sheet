@@ -29,7 +29,11 @@ export const SyntaxHighlight: React.FC<SyntaxHighlightProps> = ({
         overflowWrap: "anywhere",
         whiteSpace: "pre-wrap",
         wordWrap: "break-word",
-        fontSize: "75%",
+        fontSize: "85%",
+          borderRadius: "1mm",
+            padding: "0.5mm",
+          boxShadow: "0 0 0.5mm rgba(0, 0, 0, 0.2)",
+          margin: "0.5mm 0 0.55mm"
       }}
       wrapLines={true}
       wrapLongLines={true}

@@ -103,9 +103,9 @@ export const Page3: React.FC<{}> = () => {
                     </li>
 
             </OrderedList>
-                    <WarningBox>
+                    <InfoBox>
                         <p><strong>OS Flaws:</strong> While both DBMS and OS provide file systems and disk/buffer management, they are not interchangeable due to several reasons. The buffer management provided by the OS is minimal and not suitable for higher-level tasks in DBMS. There are portability issues when using OS-level operations, and OS file systems cannot span multiple disks. Buffer management in DBMS requires functionality like pinning a page, forcing a page to disk, adjusting replacement policy, and pre-fetching pages based on access patterns, which OS file systems do not efficiently implement. The OS is not adept at optimizing operations based on the type of data requested, while DBMS can intelligently pre-fetch and process data based on user queries.</p>
-                    </WarningBox>
+                    </InfoBox>
                     <InfoH3>Record Formats</InfoH3>
                     <KeyValue value={"Fixed-length records"}>
                         Like an array, needs to be oversized if its gonna be used with variable length records. Offset of each field is obvious to calculate.
@@ -185,11 +185,11 @@ export const Page3: React.FC<{}> = () => {
                         <p>  <h4>Regarding CPU vs I/O Costs</h4>                      Note that CPU costs only come into the picture when the data is actually present in memory. This makes overcoming the I/O overhead a bigger problem to focus on. However, real systems also consider the CPU cost to estimate the execution time of a statement.
                         </p>
                     </InfoBox>
-                    <WarningBox>
+                    <InfoBox>
                         <p>
                             <h4>Assumptions in COMP421</h4> Consider only disk reads, ignoring writes, for a read-only workload. However, be aware that a small number of writes may occur due to main memory resource constraints, including page swapping. An example is when a user requests a sorted relation, which requires loading parts of the relation into memory, sorting it, writing it back to the disk, and repeating until the data is sorted before returning the result. This analysis focuses on the number of I/Os and not individual read times, ignoring page pre-fetch, and is based on an average-case analysis with several simplistic assumptions.
                         </p>
-                    </WarningBox>
+                    </InfoBox>
                     <WarningBox>
                         <p>Update is delete and insert.</p>
                     </WarningBox>
@@ -268,7 +268,7 @@ export const Page3: React.FC<{}> = () => {
                     <TwoColumn>
                         <div>
                             <h4>Indirect</h4>
-                            <i>The leaf nodes store the rid of a record, which is actually stored on a data page separate from the index.</i>
+                            <i>The leaf nodes store the rid of a record, which is actually stored on a data page separate from the index. Type 2 is usually best.</i>
                         </div>
                         <div>
                             <h4>Direct</h4>

@@ -17,6 +17,7 @@ import { KeyValue, NoKey, YesKey } from "./components/KeyValue";
 import { Page2 } from "./pages/Page2";
 import { TestPage } from "./pages/TestPage";
 import {Page3} from "./pages/Page3";
+import {Page4} from "./pages/Page4";
 
 function App() {
   const [showHelp, setShowHelp] = useState(false);
@@ -91,6 +92,9 @@ function App() {
       <Page2 />
         <h1>Page 3</h1>
         <Page3 />
+        <h1>Page 4</h1>
+        <Page4 />
+
       <h1>Test Page</h1>
       <TestPage />
 

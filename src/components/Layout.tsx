@@ -51,6 +51,7 @@ export const Callout = styled.aside`
   padding: 1mm;
   background: white;
   font-weight: 300;
+  border-radius: 1mm;
   box-shadow: 0 0 0.5mm rgba(0, 0, 0, 0.2);
   line-height: 0.9;
   min-height: 10px;

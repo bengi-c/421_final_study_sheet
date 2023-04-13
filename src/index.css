@@ -48,6 +48,7 @@ p {
 code {
   font-family: "InconsolataGo Nerd Font Mono", "Inconsolata", monospace;
   font-size: 1.2em;
+  border-radius: 1mm;
 }
 
 button {
