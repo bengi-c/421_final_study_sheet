@@ -112,3 +112,53 @@ RETURN keanu.name, keanu.born`;
 export const CYPHER_Q2 = `MATCH (bornInEighties:Person)
 WHERE bornInEighties.born >= 1980 AND bornInEighties.born < 1990
 RETURN bornInEighties.name as name, bornInEighties.born as born ORDER BY born DESC`
+
+
+export const SQL_VIEW = `CREATE VIEW activeSkaters (sid, sname) AS 
+\t\tSELECT DISTINCT S.sid, S.sname
+\t\tFROM skaters S, participates P
+\t\tWHERE S.sid = P.sid;
+
+-- we can now run queries over this view as if it were a query of its own
+SELECT * 
+FROM activeSkaters
+WHERE sname = 'john';
+
+-- delete a view using the DROP VIEW clause
+DROP VIEW activeSkaters;`
+
+export const SQL_NESTED = `-- find names of skaters who have participated in competition #101
+SELECT sname
+FROM skaters
+WHERE sid IN (SELECT sid 
+\t\t\t\t\t\t\tFROM participates 
+\t\t\t\t\t\t\tWHERE cid = 101);`
+
+export const SQL_AGGREGATION = `-- find the average age and number of skaters with rating 7
+SELECT AVG(age), COUNT(*)
+FROM skaters
+WHERE rating = 7;
+
+-- find the number of distinct ratings
+SELECT COUNT(DISTINCT rating)
+FROM skaters;
+
+-- find the first skater alphabetically by name
+-- MAX and MIn can be used lexicographically as well
+SELECT MIN(sname)
+FROM skaters;
+
+-- find the names of skaters with the highest rating
+SELECT sname
+FROM skaters
+WHERE rating = (SELECT MAX(rating) 
+\t\t\t\t\t\t\t\tFROM skaters);`
+
+export const SQL_IC = `CREATE TABLE skaters (
+ sid INT NOT NULL,
+ tsname VARCHAR(20),
+ rating INT CONSTRAINT rat CHECK (rating < 11), --atribute based
+ age INT,
+ CONSTRAINT pk PRIMARY KEY (sid),
+ CONSTRAINT ratage CHECK(rating > 0 AND age > 13) --tuple based
+);`

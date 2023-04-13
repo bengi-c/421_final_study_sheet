@@ -3,17 +3,18 @@ import React from "react";
 import { PageHeader } from "../components/PageHeader";
 import { Java, SQL, TypeScript } from "../components/Code";
 import { OrderedList, PageColumns, PageSection } from "../components/Layout";
-import { BASIC_JAVA_EXAMPLE, BASIC_SQL_EXAMPLE } from "../assets/Code";
+import {BASIC_JAVA_EXAMPLE, BASIC_SQL_EXAMPLE, SQL_AGGREGATION, SQL_IC, SQL_NESTED, SQL_VIEW} from "../assets/Code";
 import { KeyValue, NoKey, YesKey } from "../components/KeyValue";
 import Latex from "react-latex-next";
 import "katex/dist/katex.min.css";
 import { FaGithub } from "react-icons/fa";
 import { LatexSymbol } from "../components/Latex";
-import { ExampleH3, HowToH3, Info, InfoH3 } from "../components/QuickSymbols";
+import {Example, ExampleH3, HowToH3, Info, InfoH3} from "../components/QuickSymbols";
 import { InfoBox, WarningBox } from "../components/ThemedBoxes";
 import IMG_EQUI_JOIN from "../assets/images/equi-join.png";
 import IMG_RA_MC_EXAMPLE from "../assets/images/ra-mc-example.png";
 import IMG_RA_SA_TABLES from "../assets/images/ra-sa-tables.png";
+import IMG_JOIN_TYPES from "../assets/images/join_types.png";
 
 export const Page2: React.FC<{}> = () => {
   return (
@@ -310,6 +311,40 @@ export const Page2: React.FC<{}> = () => {
             </li>
           </ul>
         </PageSection>
+        <PageSection>
+          <ExampleH3>Views in SQL</ExampleH3>
+          <i>Views are just aliases for relations</i>
+          <SQL code={SQL_VIEW}/>
+          <InfoH3>Join Types</InfoH3>
+          <Image src={IMG_JOIN_TYPES} />
+          <ExampleH3>SQL Nested Queries</ExampleH3>
+          <SQL code={SQL_NESTED}/>
+          <ExampleH3>SQL Aggregation (COUNT, AVG, MAX, MIN, SUM)</ExampleH3>
+          <SQL code={SQL_AGGREGATION}/>
+          <InfoBox>
+            <p>
+              <h4>Grouping & HAVING</h4>
+              <p>
+                HAVING  a selection on groups, just as WHERE clauses are selections on rows. It is applied after grouping is done. **Example**: find the average age of skaters in *each rating level*.
+                - In general, we don’t know how many rating levels exist and what the rating values for these levels are.
+              </p>
+            </p>
+          </InfoBox>
+          <InfoBox>
+            <p>
+              <h4>Null & Coalesce</h4>
+              The COALESCE operator can be used instead to get some default value in case the original value is NULL.
+            </p>
+          </InfoBox>
+      <InfoH3>Integrity Constraints (ICs)</InfoH3>
+          ICs can be classified into tuple-level and table-level ICs. Tuple-level ICs are enforced on individual tuples, while table-level ICs are enforced on the entire table.
+
+          SQL also offers attribute-based checks that can be enforced by using the <strong>CHECK</strong> operator while defining the table schema.
+
+          <ExampleH3>ICs in SQL</ExampleH3>
+          <SQL code={SQL_IC}/>
+        </PageSection>
+
       </PageColumns>
     </A4Paper>
   );
