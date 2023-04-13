@@ -1,10 +1,11 @@
 import { A4Paper, Image } from "../components/Paper";
 import React from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Java, SQL } from "../components/Code";
+import {Java, SQL, TypeScript} from "../components/Code";
 import {
-    PageColumns,
-    PageSection,
+  OrderedList,
+  PageColumns,
+  PageSection,
 } from "../components/Layout";
 import { BASIC_JAVA_EXAMPLE, BASIC_SQL_EXAMPLE } from "../assets/Code";
 import { KeyValue, NoKey, YesKey } from "../components/KeyValue";
@@ -12,8 +13,11 @@ import Latex from "react-latex-next";
 import "katex/dist/katex.min.css";
 import { FaGithub } from "react-icons/fa";
 import { LatexSymbol } from "../components/Latex";
-import {HowToH3, Info, InfoH3} from "../components/QuickSymbols";
+import {ExampleH3, HowToH3, Info, InfoH3} from "../components/QuickSymbols";
 import {InfoBox, WarningBox} from "../components/ThemedBoxes";
+import IMG_EQUI_JOIN from "../assets/images/equi-join.png";
+import IMG_RA_MC_EXAMPLE from "../assets/images/ra-mc-example.png";
+import IMG_RA_SA_TABLES from "../assets/images/ra-sa-tables.png";
 
 export const Page2: React.FC<{}> = () => {
   return (
@@ -104,6 +108,7 @@ export const Page2: React.FC<{}> = () => {
               {`The schema of the output relation is similar to the schema of cross-product, however, there is only one copy of the attributes for which equality is specified in the condition. \$R_\\text{out} = R_{\\text{in}_1} \\bowtie_{R_{\\text{in}_1}.a_1 = R_{\\text{in}_2}.b_1 \\wedge \\cdots \\wedge R_{\\text{in}_1}.a_n = R_{\\text{in}_2}.b_n} R_{\\text{in}_2}\$`}
             </Latex>
           </KeyValue>
+          <Image src={IMG_EQUI_JOIN}/>
 
           <KeyValue value={"Natural Join"}>
             An equi-join on all common attributes (i.e., attributes with the
@@ -148,7 +153,50 @@ export const Page2: React.FC<{}> = () => {
                     <li>Using algebra like substitution, creating new relations and sending them to each next operator.</li>
                     <li>Running thru the the first relation, as we go sending passing stuff to the next operator in parallel.</li>
               </ul>
-
+            <HowToH3>Writing Relational Algebra Queries</HowToH3>
+            <OrderedList>
+              <li>Understand the problem statement and identify the tables and attributes required to answer the query.</li>
+              <li>Refer to the schema of the tables rather than the sample data to write the queries.</li>
+              <li>Determine the appropriate relational algebra operators needed to answer the query.</li>
+              <li>Start with the most restrictive operation (e.g., selection) to minimize the number of rows in intermediate results.</li>
+              <li>If you need to combine information from two or more tables, consider using join operators (natural join, equi-join, or condition join) instead of cross product, as cross product often results in larger intermediate relations.</li>
+              <li>Use projection <LatexSymbol symbol={"Pi"}/> to extract the specific attributes required by the query.</li>
+              <li>If needed, use set operations (union, intersection, or set difference) to combine the results of multiple operations.</li>
+              <li>Rename tables and/or attributes using the rename operator <LatexSymbol symbol={"rho"}/> to avoid ambiguity or to make the query more readable.</li>
+              <li>If possible, leverage the commutativity, associativity, and idempotence rules to simplify and optimize the query.</li>
+              <li>Test your query with sample data to ensure that it produces the correct results.</li>
+            </OrderedList>
+            <ExampleH3>Multi Choice</ExampleH3>
+            <p>Given a schema of <code>Computer(<u>maker, model</u>, category) </code> maker is a string of manufacturing company’s name, model is an integer specifying model number, and category is a string that is either laptop, desktop or tablet.</p>
+            <h4>Find the makers that don’t make any desktops, but make laptops.</h4>
+            <Image src={IMG_RA_MC_EXAMPLE}/>
+            <strong>Answer: A</strong>
+            <ExampleH3>Short Answer</ExampleH3>
+            <p>Consider the relations <code>Skaters(sid, sname, rating, age)</code>, <code>Participates(sid, cid, day)</code>, and <code>Competition(cid, date, type)</code>. Write the queries in relational algebra notation for the following requirements.</p>
+            <Image src={IMG_RA_SA_TABLES}/>
+            <h4>Find names of skaters who have participated in competition #103 (three solutions).</h4>
+            <InfoBox><p>note that we don’t typically need the Competition table to solve this because it doesn’t provide any additional info.</p></InfoBox>
+            <ul style={{fontSize: "84%"}}>
+              <li><code>project sname (select [cid = 103] (P nat join S))</code></li>
+              <li><code>project sname (select [cid = 103] (S equi join [S.sid = P.sid] P))</code></li>
+              <li><code>project sname (select [cid = 103] ((S nat join P) nat join C))</code></li>
+            </ul>
+            <h4>
+              Find names of skaters who have participated in a local competition (2 solutions).
+            </h4>
+            <ul style={{fontSize: "84%"}}>
+              <li><code>project sname (select [type = local] (S nat join P nat join C))</code></li>
+              <li><code>project sname (select [type = local] (C) nat join P nat join S)</code></li>
+            </ul>
+            <h4>Find sid of skaters who have participated in a local or regional competition (1 solution ).</h4>
+            <InfoBox>
+              <p>
+                note that although tempted, never write queries by just looking at sample data. It might miss capturing the bigger picture. Here, it might seem that there are only two types of competitions, hence it’s futile to use selection on table $C$, but that might not be the case outside of this small sample data.
+              </p>
+            </InfoBox>
+<ul style={{fontSize: "84%"}}>
+                <li><code>project sid (select [type = local || regional] (P nat join C)) project sid(S nat join (P nat join (select [type = local || regional] (C))))</code></li>
+                </ul>
 
           </PageSection>
       </PageColumns>

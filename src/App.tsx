@@ -16,6 +16,7 @@ import { Modal } from "./components/Modal";
 import { KeyValue, NoKey, YesKey } from "./components/KeyValue";
 import { Page2 } from "./pages/Page2";
 import { TestPage } from "./pages/TestPage";
+import {Page3} from "./pages/Page3";
 
 function App() {
   const [showHelp, setShowHelp] = useState(false);
@@ -88,6 +89,8 @@ function App() {
       <Page1 />
       <h1>Page 2</h1>
       <Page2 />
+        <h1>Page 3</h1>
+        <Page3 />
       <h1>Test Page</h1>
       <TestPage />
 

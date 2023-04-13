@@ -267,6 +267,44 @@ export const Page1: React.FC<{}> = () => {
           <SQL code={SQL_UPDATE_EXAMPLE} />
           <h4>Delete tuple(s) from table</h4>
           <SQL code={SQL_DELETE_EXAMPLE} />
+          <InfoH3> SQL Keywords</InfoH3>
+          <KeyValue value={"LIMIT n"}>
+            Limits the number of rows returned by the query to n.
+            </KeyValue>
+            <KeyValue value={"ORDER BY"}>
+            Sorts the rows returned by the query in ascending order.
+            </KeyValue>
+            <KeyValue value={"ORDER BY DESC"}>
+            Sorts the rows returned by the query in descending order.
+            </KeyValue>
+            <KeyValue value={"WHERE"}>
+            Filters the rows returned by the query.
+            </KeyValue>
+            <KeyValue value={"GROUP BY"}>
+            Groups the rows returned by the query.
+            </KeyValue>
+           <KeyValue value={"DISTINCT"}>
+            Returns only distinct rows.
+            </KeyValue>
+            <KeyValue value={"||"}>
+              <p>Concatenates two strings. IE <code>firstName {`|| ',' ||`} lastName</code> returns <code>John,Doe</code></p>
+            </KeyValue>
+            <KeyValue value={"AND"}>
+                <p>Logical AND. IE <code>firstName = 'John' {`AND`} lastName = 'Doe'</code> returns <code>John,Doe</code></p>
+            </KeyValue>
+    <KeyValue value={"BETWEEN"}>
+                <p>Get tuples between two inclusive values. IE <code>age {`BETWEEN`} 18 {`AND`} 25</code> returns all 18-25yo. Works on Date & all too not just numbers.</p>
+            </KeyValue>
+          <InfoBox>
+            <p>
+              To use a cross product, list off relations after the FROM clause like <code>SELECT * FROM skaters, participants;</code>
+            </p>
+          </InfoBox>
+          <InfoBox>
+            <p>All the different joins fall under the JOIN keyword.</p>
+          </InfoBox>
+        {/*  TODO: Operators and all below in sarvasvs notes*/}
+
         </PageSection>
       </PageColumns>
     </A4Paper>
