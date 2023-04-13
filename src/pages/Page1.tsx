@@ -30,6 +30,7 @@ import {
 } from "../assets/Code";
 import { InfoBox } from "../components/ThemedBoxes";
 
+//TODO: Candidate key, better glossary of ER diagram symbols
 export const Page1: React.FC<{}> = () => {
   return (
     <A4Paper>
@@ -128,6 +129,9 @@ export const Page1: React.FC<{}> = () => {
           <KeyValue value={"FOREIGN KEY"}>
             Must correspond to the primary key of the relation it refers to.
           </KeyValue>
+          <YesKey>
+            A foreign key can be a primary key
+          </YesKey>
         </PageSection>
         <PageSection>
           <HowToH3>ER Diagram {"->"} Relational Schema </HowToH3>
