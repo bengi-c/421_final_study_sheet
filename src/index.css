@@ -101,3 +101,7 @@ caption {
   margin-bottom: 0.5em;
   text-align: center;
 }
+
+i {
+  font-family: 'Roboto Condensed', sans-serif;
+}

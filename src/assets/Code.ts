@@ -65,3 +65,6 @@ const MyHowToBlock = <h3> <HowTo/> How to use SQL </h3>;
     
 const MyExampleBlock = <h3> <Example/> Example of SQL Insert </h3>;
 `;
+
+export const SQL_CREATE_INDEX = `CREATE INDEX idxSID ON students(sid); -- create index on sid
+DROP INDEX idxSID; -- drop index on sid`;

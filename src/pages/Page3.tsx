@@ -7,7 +7,7 @@ import {
     PageColumns,
     PageSection, TwoColumn,
 } from "../components/Layout";
-import { BASIC_JAVA_EXAMPLE, BASIC_SQL_EXAMPLE } from "../assets/Code";
+import {BASIC_JAVA_EXAMPLE, BASIC_SQL_EXAMPLE, SQL_CREATE_INDEX} from "../assets/Code";
 import { KeyValue, NoKey, YesKey } from "../components/KeyValue";
 import Latex from "react-latex-next";
 import "katex/dist/katex.min.css";
@@ -22,12 +22,14 @@ import IMG_HEAPFILE from "../assets/images/heapfile.png";
 import IMG_SORTEDFILE from "../assets/images/sortedfile.png";
 import IMG_HEAP_FILE_COST from "../assets/images/heap_file_cost.png";
 import IMG_SORTED_FILE_COST from "../assets/images/sorted_file_cost.png";
+import IMG_BP_TREE from "../assets/images/bp_tree.png";
+import IMG_BP_TREE_2 from "../assets/images/bp_tree_2.png";
 
 export const Page3: React.FC<{}> = () => {
     return (
         <A4Paper>
             <PageHeader>
-                <span>Page 3 - Buffer Management</span>
+                <span>Page 3 - Buffer Management, Cost Estimation, Indexing, B+ Trees</span>
                 <span>
           <FaGithub />
           /TheBigSasha
@@ -197,7 +199,96 @@ export const Page3: React.FC<{}> = () => {
                 </PageSection>
                 <PageSection>
                     <h2>Indexing</h2>
-
+                    <InfoH3>Indexing: Definitions</InfoH3>
+                    <InfoBox>
+                        An index is a collection of attributes that are frequently accessed in queries.
+                    </InfoBox>
+                    <KeyValue value={"search key attributes"}>
+                        The attributes that are indexed. Different from PKEY / FKEY. Can be any subset of the attributes in the relation.
+                    </KeyValue>
+                    <KeyValue value={"primary index"}>
+                        Index containing the primary key of the relation.
+                    </KeyValue>
+                    <KeyValue value={"secondary index"}>
+                        Index containing any other attribute(s) of the relation.
+                    </KeyValue>
+                    <KeyValue value={"unique index"}>
+                        Index where each search key is unique.
+                    </KeyValue>
+                    <KeyValue value={"SQL:: CREATE/DROP INDEX"}>
+                        Creates or drops an index on the specified attributes.
+                    </KeyValue>
+                    <SQL code={SQL_CREATE_INDEX}/>
+                    <InfoH3>Indexing: B{"+"} Trees</InfoH3>
+                    <KeyValue value={"Node"}>
+                        A node is a page in the B{"+"} tree. A node can be either an internal node or a leaf node.
+                    </KeyValue>
+                    <KeyValue value={"Inner node"}>
+                        <p>Root and inner nodes have auxiliary <strong>index entries</strong>, consisting of the search key value and <code>pageid</code> of where that value can be potentially found
+                            (i.e., the <code>pageid</code> of the child index/leaf node).</p>
+                        <code>                    To find <span className="hljs-keyword">the</span> exact `rid` <span className="hljs-keyword">of</span> <span className="hljs-keyword">the</span> record, we must traverse all <span
+                            className="hljs-keyword">the</span> way <span className="hljs-built_in">to</span> <span className="hljs-keyword">the</span> leaf nodes.
+</code>         </KeyValue>
+                    <KeyValue value={"Leaf node"}>
+                        Leaves contain data entries (denoted in the diagram as k*) sorted by the search key. For now, we assume that each data entry represents a record and consists of two parts:
+                        <ol>
+                            <li>Value of the search key (k).</li>
+                            <li>Pointer to the record --- its RID (*).</li>
+                        </ol>
+                    </KeyValue>
+                    <YesKey>
+                        B{"+"} are height-balanced trees.
+                    </YesKey>
+                    <KeyValue value={"Fanout"}>
+                        Fanout (F) is the number of children for each node. It is significant in reducing the height of the tree. High fanout means the depth is rarely more than 3 or 4 (see examples below).
+                    </KeyValue>
+                    <KeyValue value={<Latex>{"$\\log_F N$"}</Latex>}>
+                        The height of the tree, and time complexity of insert/ delete/ search.
+                    </KeyValue>
+                    <Image src={IMG_BP_TREE}/>
+                    <Image src={IMG_BP_TREE_2}/>
+                    <InfoBox>
+                        <p><strong>The leaf nodes have a minimum of 50% occupancy (except for the root).</strong> This is because when overflow happens (leaf node is full and we want to add another data entry), we add another leaf node and split the existing data into two halves, thereby populating the two leaf nodes (old and new) by at least half their amount (somewhat like 50-51 split).</p>
+                    </InfoBox>
+                    <InfoBox>
+                        <p>
+                            <h4>On Real-world implementations</h4>
+                            In real-world systems, index maintenance is not done immediately because even that costs I/O overhead, and it’s inefficient to perform maintenance operations when a query is executing. Instead, it’s done during scheduled offline/maintenance hours (that might vary from company to company). A better strategy is to leave extra free space (usually leaving them only half-filled) in intermediate and leaf nodes so that they have room to grow without requiring much maintenance regularly.
+                        </p>
+                    </InfoBox>
+                    <InfoBox>
+                        <p>
+                            <h4>On assumptions</h4>
+                            When working with B+ trees, we can assume that the root node and all the intermediate nodes are **already stored in memory**. This is possible due to the low memory overhead of these nodes.
+                            Due to this, <strong>we don’t include the I/O cost of accessing root and intermediate nodes while computing the estimate for a query</strong>.
+                        </p>
+                    </InfoBox>
+                    <hr/>
+                    <InfoH3>Indexing: Direct vs Indirect</InfoH3>
+                    <TwoColumn>
+                        <div>
+                            <h4>Indirect</h4>
+                            <i>The leaf nodes store the rid of a record, which is actually stored on a data page separate from the index.</i>
+                        </div>
+                        <div>
+                            <h4>Direct</h4>
+                            <i>Leaf nodes contain the actual records. There is no need for data pages anymore, however, creating new indexes is more complicated.</i>
+                        </div>
+                    </TwoColumn>
+                    <InfoH3>Indirect Indexing Details</InfoH3>
+                    <TwoColumn>
+                        <div>
+                            <h4>Type 1 <code>{`k* = <k, rid>`}</code></h4>
+                            <p>List of pairs of key, rid. Inefficient because we get tons of duplicates in the keys column.</p>
+                        </div>
+                        <div>
+                            <h4>Type 2 <code>{`k* = <k, list[rid]>`}</code></h4>
+                            <p>Here, we maintain a list of <code>rid</code>s that share the same key. It saves space and can have variable-length data entries that might even span a page.</p>
+                            <i>Practically, this type of indexing is used almost always.</i>
+                            <div style={{height: 50}}/>
+                            <strong style={{textAlign: "right"}}>Indexing continues on page 4</strong>
+                        </div>
+                    </TwoColumn>
                 </PageSection>
             </PageColumns>
         </A4Paper>
