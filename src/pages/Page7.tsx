@@ -264,7 +264,7 @@ export const Page7: React.FC<{}> = () => {
         <PageSection>
           <KeyValue value={"lost update"}>
             changes made to the object by the first transaction are lost or
-            overwritten by the second transaction
+            overwritten by the second transaction (caused by dirty write)
           </KeyValue>
           <KeyValue value={"unrepeatable read"}>
             occurs when a transaction reads an object twice, but some other
